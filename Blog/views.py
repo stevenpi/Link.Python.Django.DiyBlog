@@ -16,6 +16,12 @@ class PostListView(generic.ListView):
     paginate_by = 5
 
 
+class UserListView(generic.ListView):
+    model = User
+    paginate_by = 10
+    template_name = 'Blog/user_list.html'
+
+
 def user_detail_view(request, pk):
     user = User.objects.get(pk=pk)
     posts = Post.objects.filter(user=user)
