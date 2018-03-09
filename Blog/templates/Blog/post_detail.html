@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ post }}</h1>
+    <h2>by: <a href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> on {{ post.created }}</h2>
+    <p>{{ post.content }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <p>{{ comment.content }}</p>
+                <p>posted by: <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a></p>
+                <p>posted: {{ comment.created }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

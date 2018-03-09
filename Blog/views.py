@@ -22,3 +22,10 @@ def user_detail_view(request, pk):
     context = {'user': user, 'posts': posts}
     return render(request, 'Blog/user_detail.html', context)
 
+
+def post_detail_view(request, pk):
+    post = Post.objects.get(pk=pk)
+    comments = Comment.objects.filter(post=post)
+    context = {'post': post, 'comments': comments}
+    return render(request, 'Blog/post_detail.html', context)
+

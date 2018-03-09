@@ -21,9 +21,11 @@ class ContentModelMixin(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ["-created"]
 
 
 class Post(ContentModelMixin):
+
     title = models.CharField(max_length=64, default="")
 
     def __str__(self):
@@ -31,9 +33,6 @@ class Post(ContentModelMixin):
 
     def get_absolute_url(self):
         return reverse('post-detail', args=[str(self.id)])
-
-    class Meta:
-        ordering = ["-created"]
 
 
 class Comment(ContentModelMixin):
