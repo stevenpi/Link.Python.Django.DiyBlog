@@ -7,7 +7,7 @@ from django.urls import reverse
 
 # inject get_absolute_url method to `User` class by Django
 def get_absolute_url(self):
-    return reverse('user-detail', args=[str(self.username)])
+    return reverse('user-detail', args=[int(self.id)])
 
 
 User.get_absolute_url = get_absolute_url
