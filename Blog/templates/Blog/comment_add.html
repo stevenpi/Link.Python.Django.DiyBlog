@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}
+    <title>Add Comment</title>
+{% endblock %}
+
+{% block content %}
+    {% if blogpost %}
+        <h2>Add comment for {{ blogpost.title }} as {{ user.username }}</h2>
+        <form method="post" action="{{ do_add_url }}">{% csrf_token %}
+            <input type="text" name="content"/>
+            <input type="submit">
+        </form>
+    {% else %}
+        <p>something went wrong, please try again.</p>
+    {% endif %}
+    <h2></h2>
+{% endblock %}
