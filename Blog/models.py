@@ -39,4 +39,4 @@ class Comment(ContentModelMixin):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.content[:20] + "..."
+        return self.content[:75] + "..."
