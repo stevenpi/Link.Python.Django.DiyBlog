@@ -1,19 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Title: {{ user }}</h1>
 
-    <p><strong>Name:</strong> {{ user.first_name }}</p>
-    <p><strong>Lastname:</strong> {{ user.last_name }}</p>
-    <h2>Blog posts:</h2>
-    <ul>
+    <h1>Username: {{ user }}</h1>
+    <div data-role="panel">
+        <p><strong>Name:</strong> {{ user.first_name }}</p>
+    </div>
+    <div data-role="panel">
+        <p><strong>Lastname:</strong> {{ user.last_name }}</p>
+    </div>
+    <p class="padding"></p>
+        <h2>Blog posts:</h2>
         {% for post in posts %}
-            <li>
-                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                <p>Created: {{ post.created }}</p>
-            </li>
+            <div data-role="panel">
+                <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
+                <p><strong>Created:</strong> {{ post.created }}</p>
+            </div>
+            <p class="short-padding"></p>
         {% endfor %}
-
-    </ul>
 
 {% endblock %}

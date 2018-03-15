@@ -1,0 +1,83 @@
+.base-content {
+    margin: 3em;
+}
+
+body, html {
+    height: 100%;
+}
+
+.bg {
+    height: 100%;
+    background-size: cover;
+    background: url("https://static.pexels.com/photos/579353/pexels-photo-579353.jpeg") no-repeat fixed center;
+}
+
+.card {
+    background: white;
+}
+
+a>button {
+    position: relative;
+}
+
+.card-content {
+    margin-bottom: 5em;
+}
+
+.card-footer {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.page-links {
+    padding-top: 3em;
+    margin: 0 auto;
+}
+
+.spacing {
+
+}
+
+.padding {
+    padding-bottom: 2em;
+}
+
+.short-padding {
+    padding-bottom: 0.5em;
+}
+
+.large-padding {
+    padding-bottom: 3em;
+}
+
+.nav-bar {
+    z-index: 1000;
+}
+
+#login-container {
+    padding-top: 10em;
+}
+
+.error-color {
+    color: red;
+}
+
+.place-middle-inner {
+    margin: 0 auto;
+    display: table;
+}
+
+.place-middle-outer {
+    width: 100%;
+}
+
+.display-only-low {
+    display: none;
+}
+
+@media only screen and (max-width: 991px) {
+    .display-only-low {
+        display: table;
+    }
+}

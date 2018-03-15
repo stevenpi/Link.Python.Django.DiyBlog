@@ -1,18 +1,20 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>{{ post }}</h1>
-    <h2>by: <a href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> on {{ post.created }}</h2>
-    <p>{{ post.content }}</p>
+    <div data-role="panel">
+        <h1>{{ post }}</h1>
+        <p>Posted by: <a href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> on {{ post.created }}</p>
+    </div>
+    <div data-role="panel">
+        <p>{{ post.content }}</p>
+    </div>
+    <p class="padding"></p>
     <h2>Comments</h2>
-    <ul>
-        {% for comment in comments %}
-            <li>
-                <p>{{ comment.content }}</p>
-                <p>posted by: <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a></p>
-                <p>posted: {{ comment.created }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-    <p>Add your own <a href="{{ comment_url }}">comment</a></p>
+    {% for comment in comments %}
+        <div data-role="panel">
+            <p>{{ comment.content }}</p>
+            <p>by <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a> at {{ comment.created }}</p>
+        </div>
+        <p class="short-padding"></p>
+    {% endfor %}
 {% endblock %}

@@ -1,7 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <p>Logged out!</p>
+    <div id="login-container" class="row">
+        <div id="login-panel" class="cell-lg-6 offset-lg-3 cell-md-8 offset-md-1">
+            <h1>Successfully Logged Out!</h1>
+            <h4>You will be redirected to the homepage in <span id="seconds">5</span> seconds...</h4>
+        </div>
+    </div>
+    <script type="application/javascript">
+        var seconds = 5;
+        var el = document.getElementById('seconds');
 
-    <a href="{% url 'login' %}">Click here to login again.</a>
+        function incrementSeconds() {
+            seconds -= 1;
+            if (seconds <= 0) {
+                window.location.href = '../../blog';
+                return
+            }
+            el.innerText = seconds.toString();
+        }
+
+        setInterval(incrementSeconds, 1000);
+    </script>
 {% endblock %}

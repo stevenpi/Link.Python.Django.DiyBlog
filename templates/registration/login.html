@@ -1,39 +1,42 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+    <div id="login-container" class="row">
+        <div id="login-panel" class="panel cell-lg-6 offset-lg-3 cell-md-8 offset-md-1">
+            <h1>Log into your Account</h1>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
 
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+                <div id="username_container">
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </div>
+                <div id="password_container">
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </div>
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
-        {% else %}
-            <p>Please login to see this page.</p>
-        {% endif %}
-    {% endif %}
+                <div>
+                    <p class="short-padding"></p>
+                    <input type="submit" value="login" class="button secondary"/>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <p class="short-padding"></p>
+                </div>
+            </form>
 
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
+            {% if form.errors %}
+                <p class="error-color">Your username and password didn't match. Please try again.</p>
+            {% endif %}
 
-        <div>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p class="error-color">Your account doesn't have access to this page. To proceed,
+                        please login with an account that has access.</p>
+                {% else %}
+                    <p class="error-color">Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
         </div>
-        <div>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </div>
-
-        <div>
-            <input type="submit" value="login"/>
-            <input type="hidden" name="next" value="{{ next }}"/>
-        </div>
-    </form>
-
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    </div>
 
 {% endblock %}

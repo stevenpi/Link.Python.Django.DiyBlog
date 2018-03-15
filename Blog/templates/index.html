@@ -4,8 +4,60 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome to the blog!</h1>
-    <ul>
-    <li><a href="{% url 'posts' %}">All posts</a></li>
-    </ul>
+    <h1 style="padding-bottom: 2em">Welcome to the blog!</h1>
+    <div class="row">
+        <div class="cell-md-full cell-lg-4 place-middle-outer">
+            <a href="{% url 'posts' %}" class="place-middle-inner">
+                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-violet">
+                    <div class="slide-front">
+                        <span class="mif-file-text icon"></span>
+                    </div>
+                    <div class="slide-back ">
+                    </div>
+                    <span class="branding-bar">View all Posts</span>
+                </div>
+            </a>
+        </div>
+        <p class="padding display-only-low cell-md-full"></p>
+        <div class="cell-md-full cell-lg-4 place-middle-outer">
+            <a href="{% url 'users' %}" class="place-middle-inner">
+                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-green">
+                    <div class="slide-front">
+                        <span class="mif-users icon"></span>
+                    </div>
+                    <div class="slide-back ">
+                    </div>
+                    <span class="branding-bar">View all Users</span>
+                </div>
+            </a>
+        </div>
+        <p class="padding display-only-low cell-md-full cell-lg-0"></p>
+        {% if user.is_authenticated %}
+            <div class="cell-md-full cell-lg-4 place-middle-outer">
+                <a href="{% url 'logout' %}" class="place-middle-inner">
+                    <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-red">
+                        <span class="branding-bar">Logout</span>
+                        <div class="slide-front">
+                            <span class="mif-lock icon"></span>
+                        </div>
+                        <div class="slide-back ">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            <div class="cell-md-full cell-lg-4 place-middle-outer">
+                <a href="{% url 'login' %}" class="place-middle-inner">
+                    <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
+                        <div class="slide-front">
+                            <span class="mif-key icon"></span>
+                        </div>
+                        <div class="slide-back ">
+                        </div>
+                        <span class="branding-bar">Login</span>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

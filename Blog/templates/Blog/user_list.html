@@ -1,18 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>User List</h1>
+    <h1>Users</h1>
 
     {% if user_list %}
-        <ul>
-
+        <div class="row">
             {% for user in user_list %}
-                <li>
-                    <a href="{{ user.get_absolute_url }}">{{ user }}</a>
-                </li>
+                <div class="card cell-lg-5 offset-lg-1 cell-sd-full">
+                    <div class="card-header"></div>
+                    <div class="card-content p-2">
+                        <h3>{{ user }}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <a class="button secondary" href="{{ user.get_absolute_url }}">Details</a>
+                    </div>
+                </div>
             {% endfor %}
-
-        </ul>
+        </div>
     {% else %}
         <p>There are no users</p>
     {% endif %}
