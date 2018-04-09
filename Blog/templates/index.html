@@ -46,17 +46,33 @@
                 </a>
             </div>
         {% else %}
-            <div class="cell-md-full cell-lg-4 place-middle-outer">
-                <a href="{% url 'login' %}" class="place-middle-inner">
-                    <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
-                        <div class="slide-front">
-                            <span class="mif-key icon"></span>
+            <div id="login-tile-container" class="cell-md-full cell-lg-4 place-middle-outer">
+
+                <div class="cell-md-full cell-lg-4">
+                    <a href="{% url 'login' %}" class="place-middle-inner">
+                        <div data-size="wide" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
+                            <div class="slide-front">
+                                <span class="mif-key icon"></span>
+                            </div>
+                            <div class="slide-back ">
+                            </div>
+                            <span class="branding-bar">Login</span>
                         </div>
-                        <div class="slide-back ">
+                    </a>
+                </div>
+                <div class="cell-md-full cell-lg-4 place-bottom-absolute">
+                    <a href="{% url "social:begin" "google-oauth2" %}" class="place-middle-inner">
+                        <div data-size="middle" data-role="tile" data-effect="hover-zoom-right" class="bg-red">
+                            <div class="slide-front">
+                                <span class="mif-google-plus icon"></span>
+                            </div>
+                            <div class="slide-back ">
+                            </div>
+                            <span class="branding-bar">Google Login</span>
+
                         </div>
-                        <span class="branding-bar">Login</span>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         {% endif %}
     </div>
