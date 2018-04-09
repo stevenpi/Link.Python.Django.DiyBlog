@@ -76,8 +76,21 @@ a>button {
     display: none;
 }
 
+#login-tile-container {
+    position: relative;
+}
+
+.place-bottom-absolute {
+    position: absolute;
+    bottom: 0;
+}
+
 @media only screen and (max-width: 991px) {
     .display-only-low {
         display: table;
+    }
+
+    #login-tile-container {
+        height: 310px;
     }
 }
