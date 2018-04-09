@@ -8,8 +8,9 @@
     {% if blogpost %}
         <h2>Add comment for {{ blogpost.title }} as {{ user.username }}</h2>
         <form method="post" action="{{ do_add_url }}">{% csrf_token %}
-            <input type="text" name="content"/>
-            <input type="submit">
+            <textarea cols="40" rows="5" name="content">Add your comment!</textarea>
+            <br>
+            <input class="button secondary" type="submit">
         </form>
     {% else %}
         <p>something went wrong, please try again.</p>

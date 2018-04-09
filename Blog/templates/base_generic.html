@@ -20,16 +20,19 @@
 <div class="nav-bar">
 
     {% block sidebar %}
-        <ul class="h-menu bg-blue fg-white fixed-top">
-            <li><a href="{% url 'index' %}"><span class="mif-home icon"></span> Home</a></li>
-            <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> All Posts</a></li>
-            <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> All Bloggers</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> Login</a></li>
-            {% endif %}
-        </ul>
+        <div class="app-bar-expand-md bg-blue fg-white" data-role="appbar">
+            <ul class="app-bar-menu">
+                <li><a href="{% url 'index' %}"><span class="mif-home icon"></span> Home</a></li>
+                <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> All Posts</a></li>
+                <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> All Bloggers</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <p class="large-padding"></p>
     {% endblock %}
 </div>
 
@@ -57,5 +60,11 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+<script type="application/javascript">
+{#    only to color the hamburger button white, there seems to be no way to do that in html/css definition#}
+    $(document).ready(function() {
+        $('.hamburger').removeClass('dark').addClass('bright');
+    });
+</script>
 </body>
 </html>
