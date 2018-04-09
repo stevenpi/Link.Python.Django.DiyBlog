@@ -17,4 +17,7 @@
         </div>
         <p class="short-padding"></p>
     {% endfor %}
+    <div data-role="panel">
+        <a href="{% url 'comment-add' pk=post.id %}"><p>Add your own comment!</p></a>
+    </div>
 {% endblock %}
