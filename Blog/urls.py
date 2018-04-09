@@ -1,4 +1,6 @@
-from django.urls import path, include
+from django.urls import path
+
+from Blog.Feeds.blogpost_feed import LatestPostsFeed
 from . import views
 
 urlpatterns = [
@@ -9,6 +11,7 @@ urlpatterns = [
     path('posts/<int:pk>/do-add', views.add_comment, name="comment-add-do"),
     path('users/', views.UserListView.as_view(), name="users"),
     path('user/<int:pk>', views.user_detail_view, name="user-detail"),
+    path('latest/feed/', LatestPostsFeed(), name="feed"),
     # url for inserting into the db (lookup on views.py)
     # path('insert/', views.insert_to_db),
 ]
