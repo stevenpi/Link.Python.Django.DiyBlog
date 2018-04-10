@@ -8,6 +8,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -15,6 +17,7 @@
     <!-- special rss tag -->
     <link rel="alternate" href="{% fullurl "feed" %}" title="RSS" type="application/atom+xml">
 
+    <link rel="stylesheet" href="{% static 'css/shariff.min.css' %}">
 </head>
 
 <body class="bg">
@@ -68,5 +71,6 @@
         $('.hamburger').removeClass('dark').addClass('bright');
     });
 </script>
+<script src="{% static 'js/shariff.min.js' %}"></script>
 </body>
 </html>

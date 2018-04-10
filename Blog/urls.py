@@ -15,4 +15,3 @@ urlpatterns = [
     # url for inserting into the db (lookup on views.py)
     # path('insert/', views.insert_to_db),
 ]
-
