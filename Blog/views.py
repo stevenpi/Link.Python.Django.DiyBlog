@@ -5,8 +5,10 @@ from uuid import uuid4
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from taggit.models import Tag
+from django.urls import reverse
 
 from Blog.blogForms import PostCreateForm
 from .models import Post, Comment
@@ -66,6 +68,41 @@ def add_comment(request, pk):
         comment.save()
         return post_detail_view(request, pk)
     return index(request)
+
+
+@login_required
+def vote_content_model(request):
+    if request.method != "GET":
+        return index(request)
+
+    content_model_id = request.GET.get("model_id", 0)
+    if content_model_id == 0:
+        return index(request)
+
+    content_types = {"post": "post", "comment": "comment"}
+    content_type = request.GET.get("model_type", "")
+    if content_type not in content_types:
+        return index(request)
+
+    if content_type == content_types["post"]:
+        entity = Post.objects.get(pk=content_model_id)
+    else:
+        entity = Comment.objects.get(pk=content_model_id)
+
+    voted = False
+    if entity.votes.exists(request.user.id):
+        voted = True
+
+    vote_direction = request.GET.get("like", "")
+    if vote_direction == "True" and voted is False:
+        entity.votes.up(request.user.id)
+    elif vote_direction == "False" and voted is False:
+        entity.votes.down(request.user.id)
+
+    if content_type == content_types["post"]:
+        return HttpResponseRedirect(reverse('post-detail', kwargs={"pk": entity.id}))
+    else:
+        return HttpResponseRedirect(reverse('post-detail', kwargs={"pk": entity.post.id}))
 
 
 def user_detail_view(request, pk):

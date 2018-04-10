@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Blog.apps.BlogConfig',
     'social_django',
+    'vote',
     'fullurl',
     'taggit',
 ]

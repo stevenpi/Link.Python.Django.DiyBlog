@@ -4,6 +4,25 @@
     <div data-role="panel">
         <h1>{{ post }}</h1>
         <p>Posted by: <a href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> on {{ post.created }}</p>
+        {% if user.is_authenticated %}
+            <a class="button alert place-right"
+               href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=False"><span
+                    class="mif-thumbs-down icon"></span></a>
+            <a class="button success place-right"
+               href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=True"><span
+                    class="mif-thumbs-up icon"></span></a>
+        {% endif %}
+        {% if post.vote_score > 99 %}
+            <div>
+                <div class="place-right point-tile" data-role="tile" data-size="small"><p
+                        class="pos-absolute pos-center" data-role="popover"
+                        data-popover-text="<div class='text-center'>{{ post.vote_score }}</div>">99+</p></div>
+            </div>
+
+        {% else %}
+            <div class="place-right point-tile" data-role="tile" data-size="small"><p
+                    class="pos-absolute pos-center">{{ post.vote_score }}</p></div>
+        {% endif %}
     </div>
     <div data-role="panel">
         <p>{{ post.content }}</p>
@@ -14,6 +33,25 @@
         <div data-role="panel">
             <p>{{ comment.content }}</p>
             <p>by <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a> at {{ comment.created }}</p>
+            {% if user.is_authenticated %}
+                <a class="button alert place-right"
+                   href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=False"><span
+                        class="mif-thumbs-down icon"></span></a>
+                <a class="button success place-right"
+                   href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=True"><span
+                        class="mif-thumbs-up icon"></span></a>
+            {% endif %}
+            {% if comment.vote_score > 99 %}
+                <div>
+                    <div class="place-right point-tile" data-role="tile" data-size="small"><p
+                            class="pos-absolute pos-center" data-role="popover"
+                            data-popover-text="<div class='text-center'>{{ comment.vote_score }}</div>">99+</p></div>
+                </div>
+
+            {% else %}
+                <div class="place-right point-tile" data-role="tile" data-size="small"><p
+                        class="pos-absolute pos-center">{{ comment.vote_score }}</p></div>
+            {% endif %}
         </div>
         <p class="short-padding"></p>
     {% endfor %}
