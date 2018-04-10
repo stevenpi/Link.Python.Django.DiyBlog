@@ -5,6 +5,7 @@ from uuid import uuid4
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from taggit.models import Tag
 
 from .models import Post, Comment
 
@@ -20,6 +21,20 @@ def index(request):
 class PostListView(generic.ListView):
     model = Post
     paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super(PostListView, self).get_queryset()
+
+        tag = self.request.GET.get('tag', '')
+        if tag:
+            queryset = queryset.filter(tags__name__in=[tag])
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tags'] = Tag.objects.all()
+        return context
 
 
 class UserListView(generic.ListView):

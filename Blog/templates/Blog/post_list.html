@@ -2,10 +2,26 @@
 
 {% block content %}
     <h1>Posts</h1>
+    <button class="button secondary" id="dropdown_toggle_1" style="margin-left: 80%">Tags</button>
+    <div class="pos-relative">
+        <div class="bg-grayMouse fg-white"
+             data-role="dropdown"
+             data-toggle-element="#dropdown_toggle_1"
+             style="padding: 1em">
+            <a href="{% url 'posts' %}" class="button">No Tag</a>
+            {% if tags %}
+                {% for tag in tags %}
+                    <a href="{% url 'posts' %}?tag={{ tag }}" class="button">{{ tag }}</a>
+                {% endfor %}
+            {% else %}
+                <p>No Tags available...</p>
+            {% endif %}
+        </div>
+    </div>
 
-    {% if post_list %}
+    {% if object_list %}
         <div class="row">
-            {% for post in post_list %}
+            {% for post in object_list %}
                 <div class="card cell-lg-5 offset-lg-1 cell-sd-full">
                     <div class="card-header">
                         <h2>{{ post.title }}</h2>
@@ -18,11 +34,8 @@
                     </div>
                 </div>
             {% endfor %}
-
         </div>
     {% else %}
         <p>There are no posts available..</p>
     {% endif %}
-
-
 {% endblock %}

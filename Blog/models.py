@@ -6,6 +6,9 @@ from django.urls import reverse
 
 
 # inject get_absolute_url method to `User` class by Django
+from taggit.managers import TaggableManager
+
+
 def get_absolute_url(self):
     return reverse('user-detail', args=[int(self.id)])
 
@@ -27,6 +30,7 @@ class ContentModelMixin(models.Model):
 class Post(ContentModelMixin):
 
     title = models.CharField(max_length=64, default="")
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title
