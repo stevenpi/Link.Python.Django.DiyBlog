@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL_AUTH_GOOGLE_KEY
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL_AUTH_GOOGLE_SECRET
 
+# Taggit Conf
+TAGGIT_CASE_INSENSITIVE = True
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'Blog.apps.BlogConfig',
     'social_django',
     'fullurl',
+    'taggit',
 ]
 
 MIDDLEWARE = [
