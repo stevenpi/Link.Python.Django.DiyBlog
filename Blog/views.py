@@ -5,7 +5,7 @@ from uuid import uuid4
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse
@@ -127,32 +127,36 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
         form.instance.created = datetime.datetime.now()
         return super().form_valid(form)
 
+
 # Inserts a lot of users, posts and comments to the db
-# def insert_to_db(request):
-#     blogpost_content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
-#     comment_content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyamLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-#
-#     for user_count in range(100):
-#         user = User()
-#         user.username = "test-username-{}".format(str(uuid4()))
-#         user.first_name = "test-first-{}".format(str(uuid4()))
-#         user.last_name = "test-last-{}".format(str(uuid4()))
-#         user.save()
-#         user.refresh_from_db()
-#         for blogpost_user_count in range(random.randint(1, 30)):
-#             post = Post()
-#             post.created = datetime.datetime.now()
-#             post.title = "title-{}".format(str(uuid4()))
-#             post.content = blogpost_content
-#             post.user = user
-#             post.save()
-#             post.refresh_from_db()
-#             post.tags.add(str(random.randint(1, 10)))
-#             for blogpost_comment_count in range(random.randint(1, 20)):
-#                 comment = Comment()
-#                 comment.content = comment_content
-#                 comment.user = user
-#                 comment.created = datetime.datetime.now()
-#                 comment.post = post
-#                 comment.save()
-#     return index(request)
+def insert_to_db(request):
+    if not request.user.is_superuser:
+        raise Http404()
+
+    blogpost_content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+    comment_content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyamLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
+
+    for user_count in range(100):
+        user = User()
+        user.username = "test-username-{}".format(str(uuid4()))
+        user.first_name = "test-first-{}".format(str(uuid4()))
+        user.last_name = "test-last-{}".format(str(uuid4()))
+        user.save()
+        user.refresh_from_db()
+        for blogpost_user_count in range(random.randint(1, 30)):
+            post = Post()
+            post.created = datetime.datetime.now()
+            post.title = "title-{}".format(str(uuid4()))
+            post.content = blogpost_content
+            post.user = user
+            post.save()
+            post.refresh_from_db()
+            post.tags.add(str(random.randint(1, 10)))
+            for blogpost_comment_count in range(random.randint(1, 20)):
+                comment = Comment()
+                comment.content = comment_content
+                comment.user = user
+                comment.created = datetime.datetime.now()
+                comment.post = post
+                comment.save()
+    return index(request)
