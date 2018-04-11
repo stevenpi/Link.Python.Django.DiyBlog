@@ -100,6 +100,7 @@ def post_detail_view(request, pk):
 #             post.user = user
 #             post.save()
 #             post.refresh_from_db()
+#             post.tags.add(str(random.randint(1, 10)))
 #             for blogpost_comment_count in range(random.randint(1, 20)):
 #                 comment = Comment()
 #                 comment.content = comment_content
