@@ -3,10 +3,12 @@ import random
 from uuid import uuid4
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from taggit.models import Tag
 
+from Blog.blogForms import PostCreateForm
 from .models import Post, Comment
 
 
@@ -80,6 +82,15 @@ def post_detail_view(request, pk):
     context = {'post': post, 'comments': comments, 'comment_url': comment_add_url}
     return render(request, 'Blog/post_detail.html', context)
 
+
+class PostCreate(LoginRequiredMixin, generic.CreateView):
+    form_class = PostCreateForm
+    template_name = 'Blog/post_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.created = datetime.datetime.now()
+        return super().form_valid(form)
 
 # Inserts a lot of users, posts and comments to the db
 # def insert_to_db(request):
