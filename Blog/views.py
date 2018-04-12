@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
-
+from vote.managers import UP
 
 from .models import Post, Comment
 from Blog.blogForms import PostCreateForm
@@ -106,7 +106,9 @@ def vote_content_model(request):
 def user_detail_view(request, pk):
     user = User.objects.get(pk=pk)
     posts = Post.objects.filter(user=user)
-    context = {'user': user, 'posts': posts}
+    comments = Comment.objects.filter(user=user)
+    liked_posts = Post.objects.all().first().votes.all(user.id, action=UP)
+    context = {'user': user, 'posts': posts, 'comments': comments, 'liked_posts': liked_posts}
     return render(request, 'Blog/user_detail.html', context)
 
 
