@@ -7,15 +7,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from taggit.models import Tag
-from django.urls import reverse
-
-from Blog.blogForms import PostCreateForm
-from .models import Post, Comment
-
-
-# Create your views here.
 from django.views import generic
+from django.urls import reverse
+from taggit.models import Tag
+
+
+from .models import Post, Comment
+from Blog.blogForms import PostCreateForm
 
 
 def index(request):
@@ -158,5 +156,3 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
 #                 comment.post = post
 #                 comment.save()
 #     return index(request)
-
-

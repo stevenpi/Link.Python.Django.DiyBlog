@@ -5,7 +5,6 @@ from django.db.models import Model
 from django.urls import reverse
 
 
-# inject get_absolute_url method to `User` class by Django
 from vote.models import VoteModel
 from taggit.managers import TaggableManager
 
@@ -14,6 +13,7 @@ def get_absolute_url(self):
     return reverse('user-detail', args=[int(self.id)])
 
 
+# inject get_absolute_url method to `User` class by Django
 User.get_absolute_url = get_absolute_url
 
 
@@ -29,7 +29,6 @@ class ContentModelMixin(VoteModel, models.Model):
 
 
 class Post(ContentModelMixin):
-
     title = models.CharField(max_length=64, default="")
     tags = TaggableManager()
 
