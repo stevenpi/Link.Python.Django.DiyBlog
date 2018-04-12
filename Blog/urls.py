@@ -10,6 +10,7 @@ urlpatterns = [
     path('comments/<int:pk>/add', views.add_comment_form, name="comment-add"),
     path('comments/<int:pk>/do-add', views.add_comment, name="comment-add-do"),
     path('posts/add', views.PostCreate.as_view(), name="post-add"),
+    path('vote', views.vote_content_model, name="vote"),
     path('users/', views.UserListView.as_view(), name="users"),
     path('user/<int:pk>', views.user_detail_view, name="user-detail"),
     path('latest/feed/', LatestPostsFeed(), name="feed"),

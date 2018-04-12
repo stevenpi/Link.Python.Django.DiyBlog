@@ -85,6 +85,11 @@ a>button {
     bottom: 0;
 }
 
+.point-tile {
+    width: 36px;
+    height: 36px;
+}
+
 @media only screen and (max-width: 991px) {
     .display-only-low {
         display: table;
