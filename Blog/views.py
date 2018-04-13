@@ -130,6 +130,10 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 
+def settings(request):
+    return render(request, 'Blog/settings.html')
+
+
 # Inserts a lot of users, posts and comments to the db
 def insert_to_db(request):
     if not request.user.is_superuser:

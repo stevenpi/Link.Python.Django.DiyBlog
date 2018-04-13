@@ -15,6 +15,7 @@ urlpatterns = [
     path('users/', views.UserListView.as_view(), name="users"),
     path('user/<int:pk>', views.user_detail_view, name="user-detail"),
     path('latest/feed/', LatestPostsFeed(), name="feed"),
+    path('settings/', views.settings, name="settings"),
 ]
 
 if settings.DEBUG:

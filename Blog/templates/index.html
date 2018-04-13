@@ -1,11 +1,13 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block title %}
 {% endblock %}
 
 {% block content %}
-    <h1 style="padding-bottom: 2em">Welcome to the blog!</h1>
-    <div class="row">
+
+    <h1 style="padding-bottom: 0.5em">{% trans 'Welcome to the Blog!' %}</h1>
+    <div class="row padding">
         <div class="cell-md-full cell-lg-4 place-middle-outer">
             <a href="{% url 'posts' %}" class="place-middle-inner">
                 <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-violet">
@@ -14,7 +16,7 @@
                     </div>
                     <div class="slide-back ">
                     </div>
-                    <span class="branding-bar">View all Posts</span>
+                    <span class="branding-bar">{% trans 'View all Posts' %}</span>
                 </div>
             </a>
         </div>
@@ -27,7 +29,7 @@
                     </div>
                     <div class="slide-back ">
                     </div>
-                    <span class="branding-bar">View all Users</span>
+                    <span class="branding-bar">{% trans 'View all Users' %}</span>
                 </div>
             </a>
         </div>
@@ -36,7 +38,7 @@
             <div class="cell-md-full cell-lg-4 place-middle-outer">
                 <a href="{% url 'logout' %}" class="place-middle-inner">
                     <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-red">
-                        <span class="branding-bar">Logout</span>
+                        <span class="branding-bar">{% trans 'Logout' %}</span>
                         <div class="slide-front">
                             <span class="mif-lock icon"></span>
                         </div>
@@ -56,7 +58,7 @@
                             </div>
                             <div class="slide-back ">
                             </div>
-                            <span class="branding-bar">Login</span>
+                            <span class="branding-bar">{% trans 'Login' %}</span>
                         </div>
                     </a>
                 </div>
@@ -68,12 +70,26 @@
                             </div>
                             <div class="slide-back ">
                             </div>
-                            <span class="branding-bar">Google Login</span>
-
+                            <span class="branding-bar">{% trans 'Google Login' %}</span>
                         </div>
                     </a>
                 </div>
             </div>
         {% endif %}
+    </div>
+    <div class="row">
+
+        <div class="cell-md-full cell-lg-4 place-middle-outer">
+            <a href="{% url 'settings' %}" class="place-middle-inner">
+                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
+                    <div class="slide-front">
+                        <span class="mif-cog icon"></span>
+                    </div>
+                    <div class="slide-back ">
+                    </div>
+                    <span class="branding-bar">{% trans 'Settings' %}</span>
+                </div>
+            </a>
+        </div>
     </div>
 {% endblock %}

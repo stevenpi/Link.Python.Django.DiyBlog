@@ -1,19 +1,22 @@
 {% extends 'base_generic.html' %}
+{% load i18n %}
 
 {% block title %}
-    <title>Add Comment</title>
+    <title>{% trans 'Add Comment' %}</title>
 {% endblock %}
 
 {% block content %}
     {% if blogpost %}
-        <h2>Add comment for {{ blogpost.title }} as {{ user.username }}</h2>
+        <h2>
+            {% blocktrans with title=blogpost.title name=user.username %}Add comment for {{ title }} as {{ name }}{% endblocktrans %}
+        </h2>
         <form method="post" action="{{ do_add_url }}">{% csrf_token %}
-            <textarea cols="40" rows="5" name="content">Add your comment!</textarea>
+            <textarea cols="40" rows="5" name="content">{% trans 'Add your comment!' %}</textarea>
             <br>
-            <input class="button secondary" type="submit">
+            <input class="button secondary" type="submit" value="{% trans 'submit' %}">
         </form>
     {% else %}
-        <p>something went wrong, please try again.</p>
+        <p>{% trans 'something went wrong, please try again.' %}</p>
     {% endif %}
     <h2></h2>
 {% endblock %}
