@@ -35,6 +35,10 @@ TAGGIT_CASE_INSENSITIVE = True
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
+# Configure Media upload
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,6 +81,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
