@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-13 14:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Blog/blogForms.py:14
+msgid "Max 64 characters"
+msgstr "Max. 64 Zeichen"
+
+#: Blog/blogForms.py:15
+msgid "Max 2048 characters"
+msgstr "Max. 2048 Zeichen"
+
+#: Blog/blogForms.py:19
+msgid "Title"
+msgstr "Titel"
+
+#: Blog/blogForms.py:20
+msgid "Content"
+msgstr "Inhalt"
+
+#: Blog/templates/Blog/comment_add.html:5
+msgid "Add Comment"
+msgstr "Kommentar hinzufügen"
+
+#: Blog/templates/Blog/comment_add.html:11
+#, python-format
+msgid "Add comment for %(title)s as %(name)s"
+msgstr "Kommentar hinzufügen für %(title)s als %(name)s"
+
+#: Blog/templates/Blog/comment_add.html:14
+msgid "Add your comment!"
+msgstr "Schreibe einen Kommentar!"
+
+#: Blog/templates/Blog/comment_add.html:16
+#: Blog/templates/Blog/post_form.html:12
+msgid "submit"
+msgstr "Senden"
+
+#: Blog/templates/Blog/comment_add.html:19
+msgid "something went wrong, please try again."
+msgstr "Etwas ist schiefgelaufen. Bitte Seite neuladen."
+
+#: Blog/templates/Blog/post_detail.html:7
+msgid "Posted by:"
+msgstr "Geposted von:"
+
+#: Blog/templates/Blog/post_detail.html:7
+msgid "on"
+msgstr "am"
+
+#: Blog/templates/Blog/post_detail.html:33
+#: Blog/templates/Blog/user_detail.html:35
+msgid "Comments"
+msgstr "Kommentare"
+
+#: Blog/templates/Blog/post_detail.html:37
+msgid "by"
+msgstr "von"
+
+#: Blog/templates/Blog/post_detail.html:37
+msgid "at"
+msgstr "am"
+
+#: Blog/templates/Blog/post_detail.html:61
+msgid "Add your own comment!"
+msgstr "Schreibe einen Kommentar"
+
+#: Blog/templates/Blog/post_form.html:5 Blog/templates/base_generic.html:35
+msgid "Add Post"
+msgstr "Post schreiben"
+
+#: Blog/templates/Blog/post_form.html:9
+msgid "Add post as"
+msgstr "Post schreiben als"
+
+#: Blog/templates/Blog/post_list.html:5
+msgid "Posts"
+msgstr "Posts"
+
+#: Blog/templates/Blog/post_list.html:6
+msgid "Tags"
+msgstr "Tags"
+
+#: Blog/templates/Blog/post_list.html:12
+msgid "No Tag"
+msgstr "Alle Posts"
+
+#: Blog/templates/Blog/post_list.html:18
+msgid "No Tags available..."
+msgstr "Keine Tags verfügbar..."
+
+#: Blog/templates/Blog/post_list.html:34
+msgid "Read More"
+msgstr "Mehr lesen"
+
+#: Blog/templates/Blog/post_list.html:40
+msgid "There are no posts available..."
+msgstr "Keine Posts verfügbar..."
+
+#: Blog/templates/Blog/settings.html:5 Blog/templates/base_generic.html:43
+#: Blog/templates/index.html:90
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: Blog/templates/Blog/settings.html:9
+msgid "Language Settings"
+msgstr "Spracheinstellungen"
+
+#: Blog/templates/Blog/settings.html:29
+msgid "Change Language"
+msgstr "Sprache ändern"
+
+#: Blog/templates/Blog/user_detail.html:12
+msgid "Username"
+msgstr "Benutzername"
+
+#: Blog/templates/Blog/user_detail.html:15
+msgid "Name"
+msgstr "Vorname"
+
+#: Blog/templates/Blog/user_detail.html:16
+msgid "Lastname"
+msgstr "Nachname"
+
+#: Blog/templates/Blog/user_detail.html:17
+msgid "Bio"
+msgstr "Beschreibung"
+
+#: Blog/templates/Blog/user_detail.html:25
+msgid "Blog posts"
+msgstr "Blogposts"
+
+#: Blog/templates/Blog/user_detail.html:29
+#: Blog/templates/Blog/user_detail.html:39
+#: Blog/templates/Blog/user_detail.html:49
+msgid "Created"
+msgstr "Erstell"
+
+#: Blog/templates/Blog/user_detail.html:45
+msgid "Liked Posts"
+msgstr "Gelikte Posts"
+
+#: Blog/templates/Blog/user_list.html:5
+msgid "Users"
+msgstr "Benutzer"
+
+#: Blog/templates/Blog/user_list.html:16
+msgid "Details"
+msgstr "Details"
+
+#: Blog/templates/Blog/user_list.html:22
+msgid "There are no users..."
+msgstr "Keine Benutzer verfügbar..."
+
+#: Blog/templates/base_generic.html:30
+msgid "Home"
+msgstr "Home"
+
+#: Blog/templates/base_generic.html:31
+msgid "All Posts"
+msgstr "Alle Posts"
+
+#: Blog/templates/base_generic.html:33
+msgid "All Bloggers"
+msgstr "Alle Benutzer"
+
+#: Blog/templates/base_generic.html:37 Blog/templates/index.html:41
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: Blog/templates/base_generic.html:39 Blog/templates/index.html:61
+msgid "Login"
+msgstr "Einloggen"
+
+#: Blog/templates/base_generic.html:59
+msgid "previous"
+msgstr "vorherige"
+
+#: Blog/templates/base_generic.html:62
+msgid "Page"
+msgstr "Seite"
+
+#: Blog/templates/base_generic.html:66
+msgid "next"
+msgstr "nächste"
+
+#: Blog/templates/index.html:9
+msgid "Welcome to the Blog!"
+msgstr "Willkommen im Blog!"
+
+#: Blog/templates/index.html:19
+msgid "View all Posts"
+msgstr "Alle Posts ansehen"
+
+#: Blog/templates/index.html:32
+msgid "View all Users"
+msgstr "Alle Benutzer ansehen"
+
+#: Blog/templates/index.html:73
+msgid "Google Login"
+msgstr "mit Google einloggen"
+
+#: DiyBlog/settings.py:72
+msgid "English"
+msgstr "Englisch"
+
+#: DiyBlog/settings.py:73
+msgid "German"
+msgstr "Deutsch"
+
+#: templates/registration/logged_out.html:7
+msgid "Successfully Logged Out"
+msgstr "Erfolgreich Ausgeloggt"
+
+#: templates/registration/logged_out.html:8
+msgid "You will be redirected to the homepage in"
+msgstr "Du wirst zur Homepage weitergeleitet in"
+
+#: templates/registration/logged_out.html:8
+msgid "seconds..."
+msgstr "Sekunden..."

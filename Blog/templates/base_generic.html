@@ -21,23 +21,29 @@
 </head>
 
 <body class="bg">
-
+{% load i18n %}
 <div class="nav-bar">
 
     {% block sidebar %}
         <div class="app-bar-expand-md bg-blue fg-white" data-role="appbar">
-            <ul class="app-bar-menu">
-                <li><a href="{% url 'index' %}"><span class="mif-home icon"></span> Home</a></li>
-                <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> All Posts</a></li>
-                <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> All Bloggers</a></li>
+            <ul class="app-bar-menu" style="width: 100%">
+                <li><a href="{% url 'index' %}"><span class="mif-home icon"></span> {% trans 'Home' %}</a></li>
+                <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> {% trans 'All Posts' %}</a>
+                </li>
+                <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> {% trans 'All Bloggers' %}</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'post-add' %}"><span class="mif-pencil icon"></span> Add Post</a></li>
-                    <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> Logout</a></li>
+                    <li><a href="{% url 'post-add' %}"><span class="mif-pencil icon"></span> {% trans 'Add Post' %}</a>
+                    </li>
+                    <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> {% trans 'Logout' %}</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> Login</a></li>
+                    <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> {% trans 'Login' %}</a></li>
                 {% endif %}
+
+                <li class="nav-bar-place-right"><a href="{% url 'settings' %}"><span
+                        class="mif-cog icon"></span> {% trans 'Settings' %}</a></li>
             </ul>
         </div>
+
         <p class="large-padding"></p>
     {% endblock %}
 </div>
@@ -47,17 +53,19 @@
     {% block pagination %}
         {% if is_paginated %}
             <div class="pagination">
-          <span class="page-links">
-              {% if page_obj.has_previous %}
-                  <a class="button secondary" href="{{ request.path }}?page={{ page_obj.previous_page_number }}&tag={{ current_tag }}">previous</a>
-              {% endif %}
-              <span class="page-current" datarole=>
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              <span class="page-links">
+                  {% if page_obj.has_previous %}
+                      <a class="button secondary"
+                         href="{{ request.path }}?page={{ page_obj.previous_page_number }}&tag={{ current_tag }}"> {% trans 'previous' %}</a>
+                  {% endif %}
+                  <span class="page-current" datarole=>
+                      {% trans 'Page' %} {{ page_obj.number }}
+                  </span>
+                  {% if page_obj.has_next %}
+                      <a class="button secondary"
+                         href="{{ request.path }}?page={{ page_obj.next_page_number }}&tag={{ current_tag }}">{% trans 'next' %}</a>
+                  {% endif %}
               </span>
-              {% if page_obj.has_next %}
-                  <a class="button secondary" href="{{ request.path }}?page={{ page_obj.next_page_number }}&tag={{ current_tag }}">next</a>
-              {% endif %}
-          </span>
             </div>
         {% endif %}
     {% endblock %}

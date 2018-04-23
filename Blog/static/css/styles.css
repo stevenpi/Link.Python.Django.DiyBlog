@@ -104,3 +104,9 @@ a>button {
         height: 310px;
     }
 }
+
+@media only screen and (min-width: 768px) {
+    .nav-bar-place-right {
+        margin: 0 0 0 auto;
+    }
+}

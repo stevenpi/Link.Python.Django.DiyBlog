@@ -1,13 +1,14 @@
 {% extends 'base_generic.html' %}
+{% load i18n %}
 
 {% block title %}
-    <title>Add Post</title>
+    <title>{% trans 'Add Post' %}</title>
 {% endblock %}
 
 {% block content %}
-    <h1>Add post as {{ user.username }}</h1>
+    <h1>{% trans 'Add post as' %} {{ user.username }}</h1>
     <form method="post" action="">{% csrf_token %}
         {{ form }}
-        <input class="button secondary" type="submit">
+        <input class="button secondary" type="submit" value="{% trans 'submit' %}">
     </form>
 {% endblock %}

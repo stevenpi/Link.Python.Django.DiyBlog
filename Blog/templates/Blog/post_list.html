@@ -1,20 +1,21 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block content %}
-    <h1>Posts</h1>
-    <button class="button secondary" id="dropdown_toggle_1" style="margin-left: 80%">Tags</button>
+    <h1>{% trans 'Posts' %}</h1>
+    <button class="button secondary" id="dropdown_toggle_1" style="margin-left: 80%">{% trans 'Tags' %}</button>
     <div class="pos-relative">
         <div class="bg-grayMouse fg-white"
              data-role="dropdown"
              data-toggle-element="#dropdown_toggle_1"
              style="padding: 1em">
-            <a href="{% url 'posts' %}" class="button">No Tag</a>
+            <a href="{% url 'posts' %}" class="button">{% trans 'No Tag' %}</a>
             {% if tags %}
                 {% for tag in tags %}
                     <a href="{% url 'posts' %}?tag={{ tag }}" class="button">{{ tag }}</a>
                 {% endfor %}
             {% else %}
-                <p>No Tags available...</p>
+                <p>{% trans 'No Tags available...' %}</p>
             {% endif %}
         </div>
     </div>
@@ -30,12 +31,12 @@
                         <p>{{ post.content|truncatechars:240 }}</p>
                     </div>
                     <div class="card-footer">
-                        <a class="button secondary" href="{{ post.get_absolute_url }}">Read More</a>
+                        <a class="button secondary" href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
                     </div>
                 </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>There are no posts available..</p>
+        <p>{% trans 'There are no posts available...' %}</p>
     {% endif %}
 {% endblock %}
