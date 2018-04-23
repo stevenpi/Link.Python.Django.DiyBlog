@@ -126,7 +126,7 @@ def user_detail_view(request, pk):
     user = User.objects.get(pk=pk)
     posts = Post.objects.filter(user=user)
     comments = Comment.objects.filter(user=user)
-    liked_posts = Post.objects.all().first().votes.all(user.id, action=UP)
+    liked_posts = Post.votes.all(user.pk, action=UP)
     context = {'user': user, 'posts': posts, 'comments': comments, 'liked_posts': liked_posts}
     return render(request, 'Blog/user_detail.html', context)
 
