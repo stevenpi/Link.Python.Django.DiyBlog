@@ -37,6 +37,7 @@
                     <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> {% trans 'Logout' %}</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> {% trans 'Login' %}</a></li>
+                    <li><a href="{% url 'signup' %}"><span class="mif-unlock icon"></span> {% trans 'Sign up' %}</a></li>
                 {% endif %}
 
                 <li class="nav-bar-place-right"><a href="{% url 'settings' %}"><span

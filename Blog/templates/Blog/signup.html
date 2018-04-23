@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div id="login-container" class="row">
+        <div id="login-panel" class="panel cell-lg-6 offset-lg-3 cell-md-8 offset-md-1">
+            <h1>{% trans 'Sign up' %}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </p>
+                {% endfor %}
+                <br>
+                <button class="button secondary" type="submit" style="margin-bottom: 1em">{% trans 'Sign up' %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
