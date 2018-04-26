@@ -13,6 +13,11 @@
                 {% endif %}
             </div>
             <h1>{% trans 'Username' %}: {{ user }}</h1>
+        {% if request.user.is_authenticated %}
+            {% if request.user == user %}
+                <a href="{% url 'profile-update' %}" class="button secondary">{% trans 'Edit your Profile' %}</a>
+            {% endif %}
+        {% endif %}
         </div>
         <div class="cell-md-8 cell-sd-full">
             <p><strong>{% trans 'Name' %}:</strong> {{ user.first_name }}</p>
