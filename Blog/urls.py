@@ -16,6 +16,7 @@ urlpatterns = [
     path('vote', views.vote_content_model, name="vote"),
     path('users/', views.UserListView.as_view(), name="users"),
     path('user/<int:pk>', views.user_detail_view, name="user-detail"),
+    path('profile/edit', views.update_profile, name="profile-update"),
     path('latest/feed/', LatestPostsFeed(), name="feed"),
     path('settings/', views.settings, name="settings"),
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),

@@ -15,12 +15,29 @@ from django.urls import reverse
 from taggit.models import Tag
 from vote.managers import UP
 
-from .models import Post, Comment
-from Blog.blogForms import PostCreateForm
+from .models import Post, Comment, Profile
+from Blog.blogForms import PostCreateForm, UpdateUserForm, UpdateProfileForm
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST or None, request.FILES or None, instance=request.user.profile)
+        if user_form.is_valid():
+            user_form.save()
+        if profile_form.is_valid():
+            profile_form.save()
+        forms = [user_form, profile_form]
+    else:
+        user = User.objects.get(pk=request.user.id)
+        profile = Profile.objects.get(user=user)
+        forms = [UpdateUserForm(instance=user), UpdateProfileForm(instance=profile)]
+    return render(request, 'Blog/profile_update.html', {'forms': forms})
 
 
 def signup(request):
