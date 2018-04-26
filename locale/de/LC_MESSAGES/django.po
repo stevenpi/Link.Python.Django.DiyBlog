@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 14:26+0000\n"
+"POT-Creation-Date: 2018-04-26 11:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgid "on"
 msgstr "am"
 
 #: Blog/templates/Blog/post_detail.html:33
-#: Blog/templates/Blog/user_detail.html:35
+#: Blog/templates/Blog/user_detail.html:38
 msgid "Comments"
 msgstr "Kommentare"
 
@@ -113,8 +113,8 @@ msgstr "Mehr lesen"
 msgid "There are no posts available..."
 msgstr "Keine Posts verfügbar..."
 
-#: Blog/templates/Blog/settings.html:5 Blog/templates/base_generic.html:43
-#: Blog/templates/index.html:90
+#: Blog/templates/Blog/settings.html:5 Blog/templates/base_generic.html:44
+#: Blog/templates/index.html:102
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -126,33 +126,38 @@ msgstr "Spracheinstellungen"
 msgid "Change Language"
 msgstr "Sprache ändern"
 
-#: Blog/templates/Blog/user_detail.html:12
+#: Blog/templates/Blog/signup.html:7 Blog/templates/Blog/signup.html:20
+#: Blog/templates/base_generic.html:40
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: Blog/templates/Blog/user_detail.html:15
 msgid "Username"
 msgstr "Benutzername"
 
-#: Blog/templates/Blog/user_detail.html:15
+#: Blog/templates/Blog/user_detail.html:18
 msgid "Name"
 msgstr "Vorname"
 
-#: Blog/templates/Blog/user_detail.html:16
+#: Blog/templates/Blog/user_detail.html:19
 msgid "Lastname"
 msgstr "Nachname"
 
-#: Blog/templates/Blog/user_detail.html:17
+#: Blog/templates/Blog/user_detail.html:20
 msgid "Bio"
 msgstr "Beschreibung"
 
-#: Blog/templates/Blog/user_detail.html:25
+#: Blog/templates/Blog/user_detail.html:28
 msgid "Blog posts"
 msgstr "Blogposts"
 
-#: Blog/templates/Blog/user_detail.html:29
-#: Blog/templates/Blog/user_detail.html:39
-#: Blog/templates/Blog/user_detail.html:49
+#: Blog/templates/Blog/user_detail.html:32
+#: Blog/templates/Blog/user_detail.html:42
+#: Blog/templates/Blog/user_detail.html:52
 msgid "Created"
 msgstr "Erstell"
 
-#: Blog/templates/Blog/user_detail.html:45
+#: Blog/templates/Blog/user_detail.html:48
 msgid "Liked Posts"
 msgstr "Gelikte Posts"
 
@@ -188,15 +193,15 @@ msgstr "Ausloggen"
 msgid "Login"
 msgstr "Einloggen"
 
-#: Blog/templates/base_generic.html:59
+#: Blog/templates/base_generic.html:60
 msgid "previous"
 msgstr "vorherige"
 
-#: Blog/templates/base_generic.html:62
+#: Blog/templates/base_generic.html:63
 msgid "Page"
 msgstr "Seite"
 
-#: Blog/templates/base_generic.html:66
+#: Blog/templates/base_generic.html:67
 msgid "next"
 msgstr "nächste"
 
@@ -215,6 +220,10 @@ msgstr "Alle Benutzer ansehen"
 #: Blog/templates/index.html:73
 msgid "Google Login"
 msgstr "mit Google einloggen"
+
+#: Blog/templates/index.html:85
+msgid "Signup"
+msgstr "Registration"
 
 #: DiyBlog/settings.py:72
 msgid "English"

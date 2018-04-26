@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block content %}
     <div class="row">
@@ -7,6 +8,8 @@
             <div class="img-container profile-picture">
                 {% if user.profile.image %}
                     <img src="{{ user.profile.image.url }}" style="border-radius: 50%"/>
+                {% else %}
+                    <img src="{% static 'images/default_user.png' %}"/>
                 {% endif %}
             </div>
             <h1>{% trans 'Username' %}: {{ user }}</h1>

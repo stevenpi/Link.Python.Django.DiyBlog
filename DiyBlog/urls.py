@@ -21,6 +21,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
+from Blog import views as app_views
+
+
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 urlpatterns = [
@@ -33,6 +36,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('blog/', include('Blog.urls')),
     path('', RedirectView.as_view(url='/blog/'), name='home'),
+    url(r'^signup/$', app_views.signup, name='signup'),
 )
 
 if settings.DEBUG:

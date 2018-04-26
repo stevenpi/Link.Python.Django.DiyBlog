@@ -2,11 +2,13 @@ import datetime
 import random
 from uuid import uuid4
 
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
@@ -18,6 +20,23 @@ from Blog.blogForms import PostCreateForm
 
 def index(request):
     return render(request, 'index.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.bio = form.cleaned_data.get('bio')
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'Blog/signup.html', {'form': form})
 
 
 class PostListView(generic.ListView):
@@ -107,7 +126,7 @@ def user_detail_view(request, pk):
     user = User.objects.get(pk=pk)
     posts = Post.objects.filter(user=user)
     comments = Comment.objects.filter(user=user)
-    liked_posts = Post.objects.all().first().votes.all(user.id, action=UP)
+    liked_posts = Post.votes.all(user.pk, action=UP)
     context = {'user': user, 'posts': posts, 'comments': comments, 'liked_posts': liked_posts}
     return render(request, 'Blog/user_detail.html', context)
 
