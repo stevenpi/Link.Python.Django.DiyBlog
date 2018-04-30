@@ -126,6 +126,14 @@ msgstr "Spracheinstellungen"
 msgid "Change Language"
 msgstr "Sprache ändern"
 
+#: Blog/templates/Blog/settings.html:36
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: Blog/templates/Blog/settings.html:39
+msgid "Change it"
+msgstr "Passwort ändern"
+
 #: Blog/templates/Blog/signup.html:7 Blog/templates/Blog/signup.html:20
 #: Blog/templates/base_generic.html:40
 msgid "Sign up"
@@ -246,6 +254,15 @@ msgid "seconds..."
 msgstr "Sekunden..."
 
 #: templates/registration/password_reset_complete.html:5
+#: templates/registration/password_change_done.html:5
+msgid "Your password has been changed"
+msgstr "Das Passwort wurde gesetzt"
+
+#: templates/registration/password_change_done.html:6
+#, fuzzy
+#| msgid "You will be redirected to the homepage in"
+msgid "you may proceed to the homepage now"
+msgstr "Zurück zur Homepage"
 msgid "Success"
 msgstr "Erfolgreich"
 
