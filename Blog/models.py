@@ -33,12 +33,13 @@ class ContentModelMixin(VoteModel, models.Model):
 class Post(ContentModelMixin):
     title = models.CharField(max_length=64, default="")
     tags = TaggableManager()
+    slug = models.SlugField(default='', unique=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', args=[str(self.id)])
+        return reverse('post-detail', args=[str(self.slug)])
 
 
 class Comment(ContentModelMixin):
