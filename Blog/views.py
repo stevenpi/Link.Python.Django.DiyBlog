@@ -140,8 +140,8 @@ def vote_content_model(request):
         return HttpResponseRedirect(reverse('post-detail', kwargs={"slug": entity.post.slug}))
 
 
-def user_detail_view(request, pk):
-    user = User.objects.get(pk=pk)
+def user_detail_view(request, username):
+    user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(user=user)
     comments = Comment.objects.filter(user=user)
     liked_posts = Post.votes.all(user.pk, action=UP)
