@@ -30,6 +30,15 @@
                 </form>
             </div>
         </div>
-        <div class="cell-md-8"></div>
+        <div class="cell-md-1"></div>
+        <div class="card cell-md-4 cell-sd-full">
+            <div class="card-header">
+                {% trans 'Change Password' %}
+            </div>
+            <div class="card-content p-2">
+                <a class="button secondary" href="{% url 'password_change' %}">{% trans 'Change it' %}</a>
+            </div>
+        </div>
+        <div class="cell-md-3"></div>
     </div>
 {% endblock %}

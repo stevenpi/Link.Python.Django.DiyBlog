@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 13:56+0000\n"
+"POT-Creation-Date: 2018-04-30 08:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,7 @@ msgstr "Schreibe einen Kommentar!"
 
 #: Blog/templates/Blog/comment_add.html:16
 #: Blog/templates/Blog/post_form.html:12
+#: templates/registration/password_change_form.html:8
 msgid "submit"
 msgstr "Senden"
 
@@ -126,6 +127,14 @@ msgstr "Spracheinstellungen"
 msgid "Change Language"
 msgstr "Sprache ändern"
 
+#: Blog/templates/Blog/settings.html:36
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: Blog/templates/Blog/settings.html:39
+msgid "Change it"
+msgstr "Passwort ändern"
+
 #: Blog/templates/Blog/signup.html:7 Blog/templates/Blog/signup.html:20
 #: Blog/templates/base_generic.html:40
 msgid "Sign up"
@@ -155,7 +164,7 @@ msgstr "Blogposts"
 #: Blog/templates/Blog/user_detail.html:42
 #: Blog/templates/Blog/user_detail.html:52
 msgid "Created"
-msgstr "Erstell"
+msgstr "Erstellt"
 
 #: Blog/templates/Blog/user_detail.html:48
 msgid "Liked Posts"
@@ -245,43 +254,62 @@ msgstr "Du wirst zur Homepage weitergeleitet in"
 msgid "seconds..."
 msgstr "Sekunden..."
 
-#: templates/registration/password_reset_complete.html:5
+#: templates/registration/login.html:27
+#: templates/registration/password_reset_form.html:7
+msgid "Forgot password"
+msgstr "Passwort vergessen"
+
+#: templates/registration/password_change_done.html:5
+msgid "Your password has been changed"
+msgstr "Das Passwort wurde gesetzt"
+
+#: templates/registration/password_change_done.html:6
+#, fuzzy
+#| msgid "You will be redirected to the homepage in"
+msgid "you may proceed to the homepage now"
+msgstr "Zurück zur Homepage"
+
+#: templates/registration/password_reset_complete.html:7
 msgid "Success"
 msgstr "Erfolgreich"
 
-#: templates/registration/password_reset_complete.html:6
+#: templates/registration/password_reset_complete.html:8
 msgid "Your password has been set."
 msgstr "Das Passwort wurde gesetzt"
 
-#: templates/registration/password_reset_confirm.html:10
+#: templates/registration/password_reset_confirm.html:12
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: templates/registration/password_reset_confirm.html:13
+#: templates/registration/password_reset_confirm.html:15
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used."
-msgstr "Der link zum zurücksetzen des Passworts war fehlerhaft. Wahrscheinlich wurde dieser bereits benutzt"
+msgstr ""
+"Der link zum zurücksetzen des Passworts war fehlerhaft. Wahrscheinlich wurde "
+"dieser bereits benutzt"
 
-#: templates/registration/password_reset_confirm.html:14
+#: templates/registration/password_reset_confirm.html:16
 msgid "Please request a new reset."
 msgstr "Bitte eine neue Zurücksetzung anfordern"
 
-#: templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_done.html:7
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered."
 msgstr "Ein Link zum Zurücksetzen des Passworts wurde gesendet."
 
-#: templates/registration/password_reset_done.html:6
+#: templates/registration/password_reset_done.html:8
 msgid "You should receive them shortly."
 msgstr "Die Mail sollte in Kürze eintreffen."
 
-#: templates/registration/password_reset_done.html:7
+#: templates/registration/password_reset_done.html:9
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
-msgstr "Wenn keine Mail erhalten wurde, bitte sicherstellen das die richtige Adresse eingegeben wurde. Bitte auch Spam Ordner überprüfen."
+msgstr ""
+"Wenn keine Mail erhalten wurde, bitte sicherstellen das die richtige Adresse "
+"eingegeben wurde. Bitte auch Spam Ordner überprüfen."
 
 #: templates/registration/password_reset_email.html:3
 msgid "Initiate reset by clicking the link below"
@@ -295,12 +323,6 @@ msgstr "Grüsse"
 msgid "The DIY-Blog Team"
 msgstr "Das DIY-Blog Team"
 
-#: templates/registration/password_reset_form.html:5
-msgid "Forgot password"
-msgstr "Passwort vergessen"
-
-#: templates/registration/password_reset_form.html:9
-#, fuzzy
-#| msgid "submit"
+#: templates/registration/password_reset_form.html:11
 msgid "Submit"
 msgstr "Senden"
