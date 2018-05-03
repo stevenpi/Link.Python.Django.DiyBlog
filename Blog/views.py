@@ -8,7 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.text import slugify
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
@@ -83,7 +84,7 @@ def add_comment(request, pk):
         comment.created = datetime.datetime.now()
         comment.content = content
         comment.save()
-        return post_detail_view(request, pk)
+        return post_detail_view(request, comment.post.slug)
     return index(request)
 
 
@@ -117,9 +118,9 @@ def vote_content_model(request):
         entity.votes.down(request.user.id)
 
     if content_type == content_types["post"]:
-        return HttpResponseRedirect(reverse('post-detail', kwargs={"pk": entity.id}))
+        return HttpResponseRedirect(reverse('post-detail', kwargs={"slug": entity.slug}))
     else:
-        return HttpResponseRedirect(reverse('post-detail', kwargs={"pk": entity.post.id}))
+        return HttpResponseRedirect(reverse('post-detail', kwargs={"slug": entity.post.slug}))
 
 
 def user_detail_view(request, pk):
@@ -131,8 +132,8 @@ def user_detail_view(request, pk):
     return render(request, 'Blog/user_detail.html', context)
 
 
-def post_detail_view(request, pk):
-    post = Post.objects.get(pk=pk)
+def post_detail_view(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post)
     comment_add_url = "{}/add".format(request.get_full_path())
     context = {'post': post, 'comments': comments, 'comment_url': comment_add_url}
@@ -146,6 +147,12 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.created = datetime.datetime.now()
+        slug = slugify(form.instance.title)
+        same_slugs_count = Post.objects.filter(slug__icontains=slug).count()
+        if 0 < same_slugs_count:
+            # whitespace to let slugify create a hyphen
+            slug += "-" + str(same_slugs_count)
+        form.instance.slug = slug
         return super().form_valid(form)
 
 
