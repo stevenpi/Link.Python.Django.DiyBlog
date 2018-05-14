@@ -23,10 +23,15 @@
                     <p>{{ user.profile.bio }}</p>
                 </div>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='{% url 'profile-update' %}'"
+                {% if request.user.is_authenticated %}
+                    {% if request.user == user %}
+                        <button class="btn waves-effect waves-light" type="submit" name="action"
+                                onclick="location.href='{% url 'profile-update' %}'"
                         >{% trans 'Edit your Profile' %}
-                    <i class="material-icons right">create</i>
-                </button>
+                            <i class="material-icons right">create</i>
+                        </button>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
