@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for form in forms %}
+            {% for errors in form.errors.values %}
+                {% for error in errors %}
+                    <div data-role="panel" class="short-padding bg-red fg-white">{{ error }}</div>
+                {% endfor %}
+            {% endfor %}
+
+            {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.label_tag }}
+                {{ field }}
+            {% endfor %}
+        {% endfor %}
+        <br>
+        <button class="button secondary" type="submit">{% trans 'submit' %}</button>
+    </form>
+
+{% endblock %}

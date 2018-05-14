@@ -34,6 +34,28 @@ msgstr "Titel"
 msgid "Content"
 msgstr "Inhalt"
 
+#: Blog/blogForms.py:31
+msgid "Email"
+msgstr "E-Mail"
+
+#: Blog/blogForms.py:32
+msgid "First Name"
+msgstr "Vorname"
+
+#: Blog/blogForms.py:33
+#, fuzzy
+#| msgid "Lastname"
+msgid "Last Name"
+msgstr "Nachname"
+
+#: Blog/blogForms.py:43 Blog/templates/Blog/user_detail.html:20
+msgid "Bio"
+msgstr "Beschreibung"
+
+#: Blog/blogForms.py:44
+msgid "Image"
+msgstr "Bild"
+
 #: Blog/templates/Blog/comment_add.html:5
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
@@ -49,6 +71,7 @@ msgstr "Schreibe einen Kommentar!"
 
 #: Blog/templates/Blog/comment_add.html:16
 #: Blog/templates/Blog/post_form.html:12
+#: Blog/templates/Blog/profile_update.html:24
 #: templates/registration/password_change_form.html:8
 msgid "submit"
 msgstr "Senden"
@@ -144,6 +167,10 @@ msgstr "Registrieren"
 msgid "Username"
 msgstr "Benutzername"
 
+#: Blog/templates/Blog/user_detail.html:14
+msgid "Edit your Profile"
+msgstr "Profil Bearbeiten"
+
 #: Blog/templates/Blog/user_detail.html:18
 msgid "Name"
 msgstr "Vorname"
@@ -151,10 +178,6 @@ msgstr "Vorname"
 #: Blog/templates/Blog/user_detail.html:19
 msgid "Lastname"
 msgstr "Nachname"
-
-#: Blog/templates/Blog/user_detail.html:20
-msgid "Bio"
-msgstr "Beschreibung"
 
 #: Blog/templates/Blog/user_detail.html:28
 msgid "Blog posts"
