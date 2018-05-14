@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 
@@ -25,6 +25,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     path('change-password/', auth_views.PasswordChangeView.as_view()),
+    path(r'search/', include('haystack.urls')),
 ]
 
 if settings.DEBUG:

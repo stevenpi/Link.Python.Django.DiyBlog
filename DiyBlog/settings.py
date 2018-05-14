@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'vote',
     'fullurl',
     'taggit',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,11 @@ STATIC_URL = '/static/'
 
 # Email backend during development only
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Haystack confs
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    }
+}
