@@ -19,6 +19,24 @@ from .models import Post, Comment, Profile
 from Blog.blogForms import PostCreateForm, UpdateUserForm, UpdateProfileForm
 
 
+def _add_pagination_if_needed(context):
+    if context.get('is_paginated', True):
+        paginator = context.get('paginator')
+        num_pages = paginator.num_pages
+        current_page = context.get('page_obj')
+        page_no = current_page.number
+
+        if num_pages <= 11 or page_no <= 6:  # case 1 and 2
+            pages = [x for x in range(1, min(num_pages + 1, 12))]
+        elif page_no > num_pages - 6:  # case 4
+            pages = [x for x in range(num_pages - 10, num_pages + 1)]
+        else:  # case 3
+            pages = [x for x in range(page_no - 5, page_no + 6)]
+
+        context.update({'pages': pages})
+    return context
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -59,7 +77,7 @@ def signup(request):
 
 class PostListView(generic.ListView):
     model = Post
-    paginate_by = 10
+    paginate_by = 8
 
     def get_queryset(self):
         queryset = super(PostListView, self).get_queryset()
@@ -74,13 +92,19 @@ class PostListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['tags'] = Tag.objects.all()
         context['current_tag'] = self.request.GET.get('tag', '')
+        context = _add_pagination_if_needed(context)
         return context
 
 
 class UserListView(generic.ListView):
     model = User
-    paginate_by = 10
+    paginate_by = 8
     template_name = 'Blog/user_list.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context = _add_pagination_if_needed(context)
+        return context
 
 
 @login_required
@@ -157,6 +181,16 @@ def post_detail_view(request, slug):
     return render(request, 'Blog/post_detail.html', context)
 
 
+def _create_post_slug(post_instance):
+    slug = slugify(post_instance.title)
+    same_slugs_count = Post.objects.filter(slug__icontains=slug).count()
+    if 0 < same_slugs_count:
+        # whitespace to let slugify create a hyphen
+        slug += "-" + str(same_slugs_count)
+    post_instance.slug = slug
+    return post_instance
+
+
 class PostCreate(LoginRequiredMixin, generic.CreateView):
     form_class = PostCreateForm
     template_name = 'Blog/post_form.html'
@@ -164,17 +198,8 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.created = datetime.datetime.now()
-        slug = slugify(form.instance.title)
-        same_slugs_count = Post.objects.filter(slug__icontains=slug).count()
-        if 0 < same_slugs_count:
-            # whitespace to let slugify create a hyphen
-            slug += "-" + str(same_slugs_count)
-        form.instance.slug = slug
+        form.instance = _create_post_slug(form.instance)
         return super().form_valid(form)
-
-
-def settings(request):
-    return render(request, 'Blog/settings.html')
 
 
 # Inserts a lot of users, posts and comments to the db
@@ -198,6 +223,7 @@ def insert_to_db(request):
             post.title = "title-{}".format(str(uuid4()))
             post.content = blogpost_content
             post.user = user
+            post = _create_post_slug(post)
             post.save()
             post.refresh_from_db()
             post.tags.add(str(random.randint(1, 10)))

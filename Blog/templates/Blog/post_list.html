@@ -3,35 +3,46 @@
 
 {% block content %}
     <h1>{% trans 'Posts' %}</h1>
-    <button class="button secondary" id="dropdown_toggle_1" style="margin-left: 80%">{% trans 'Tags' %}</button>
-    <div class="pos-relative">
-        <div class="bg-grayMouse fg-white"
-             data-role="dropdown"
-             data-toggle-element="#dropdown_toggle_1"
-             style="padding: 1em">
-            <a href="{% url 'posts' %}" class="button">{% trans 'No Tag' %}</a>
-            {% if tags %}
-                {% for tag in tags %}
-                    <a href="{% url 'posts' %}?tag={{ tag }}" class="button">{{ tag }}</a>
-                {% endfor %}
-            {% else %}
-                <p>{% trans 'No Tags available...' %}</p>
-            {% endif %}
-        </div>
-    </div>
+    <a class="waves-effect waves-light btn" href="{% url 'posts' %}">{% trans 'No Tag' %}</a>
+    {% if tags %}
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='tags'>Tags</a>
+        <!-- Dropdown Structure -->
+        <ul id='tags' class='dropdown-content'>
+            <li><a href="{% url 'posts' %}">{% trans 'No Tag' %}</a></li>
+            {% for tag in tags %}
+                <li><a href="{% url 'posts' %}?tag={{ tag }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans 'No Tags available...' %}</p>
+    {% endif %}
 
     {% if object_list %}
         <div class="row">
             {% for post in object_list %}
-                <div class="card cell-lg-5 offset-lg-1 cell-sd-full">
-                    <div class="card-header">
-                        <h2>{{ post.title }}</h2>
-                    </div>
-                    <div class="card-content p-2">
-                        <p>{{ post.content|truncatechars:240 }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a class="button secondary" href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
+                <div class="col s6 m3">
+                    <div class="card grey darken-2 hoverable">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ post.title }}</span>
+                            <p>{{ post.content|truncatechars:240 }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
+                        </div>
+                        <div class="card-action scrollmenu">
+
+                            <div class="col s12">
+
+                                {% if post.tags.names %}
+                                    {% for tag in post.tags.names %}
+                                        <p class="chip">{{ tag }}</p>
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="chip">{% trans 'No Tag' %}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
@@ -39,4 +50,12 @@
     {% else %}
         <p>{% trans 'There are no posts available...' %}</p>
     {% endif %}
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var tabs = document.querySelectorAll('.tabs');
+            var dropdown = document.querySelectorAll('.dropdown-trigger');
+            M.Tabs.init(tabs);
+            M.Dropdown.init(dropdown);
+        });
+    </script>
 {% endblock %}

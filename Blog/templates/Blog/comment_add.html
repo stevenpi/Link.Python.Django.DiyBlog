@@ -7,14 +7,20 @@
 
 {% block content %}
     {% if blogpost %}
-        <h2>
-            {% blocktrans with title=blogpost.title name=user.username %}Add comment for {{ title }} as {{ name }}{% endblocktrans %}
-        </h2>
-        <form method="post" action="{{ do_add_url }}">{% csrf_token %}
-            <textarea cols="40" rows="5" name="content">{% trans 'Add your comment!' %}</textarea>
-            <br>
-            <input class="button secondary" type="submit" value="{% trans 'submit' %}">
-        </form>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title"><h1>{% trans 'Add Comment' %}</h1></span>
+                <form method="post" action="{{ do_add_url }}">{% csrf_token %}
+                    <div class="input-field">
+                        <textarea class="materialize-textarea" cols="40" rows="10" name="content">{% trans 'Add your comment!' %}</textarea>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action"
+                            value="login">{% trans 'Submit' %}
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+        </div>
     {% else %}
         <p>{% trans 'something went wrong, please try again.' %}</p>
     {% endif %}

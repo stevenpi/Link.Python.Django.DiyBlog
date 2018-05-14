@@ -12,8 +12,8 @@ class PostCreateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content']
         widgets = {
-            'title': TextInput(attrs={'data-role': 'popover', 'data-popover-text': _('Max 64 characters'), }),
-            'content': Textarea(attrs={'data-role': 'popover', 'data-popover-text': _('Max 2048 characters'), 'rows': 15}),
+            'title': TextInput(),
+            'content': Textarea(attrs={'rows': 15}),
         }
 
         labels = {
