@@ -5,23 +5,24 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for form in forms %}
-            {% for errors in form.errors.values %}
-                {% for error in errors %}
-                    <div data-role="panel" class="short-padding bg-red fg-white">{{ error }}</div>
-                {% endfor %}
-            {% endfor %}
-
             {% for hidden_field in form.hidden_fields %}
-                {{ hidden_field }}
+                <div class="input-field">
+                    {{ hidden_field }}
+                </div>
             {% endfor %}
 
             {% for field in form.visible_fields %}
-                {{ field.label_tag }}
-                {{ field }}
+                <div class="input-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
             {% endfor %}
         {% endfor %}
         <br>
-        <button class="button secondary" type="submit">{% trans 'submit' %}</button>
+        <button class="btn waves-effect waves-light" type="submit" name="action"
+                value="login">{% trans 'Submit' %}
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 
 {% endblock %}

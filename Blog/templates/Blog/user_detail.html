@@ -9,7 +9,7 @@
                 <div class="col m4 s12">
                     {% if user.profile.image %}
                         <img class="materialboxed" src="{{ user.profile.image.url }}"
-                            style="max-width: 24em; border-radius: 50%"/>
+                             style="max-width: 24em; border-radius: 50%"/>
                     {% else %}
                         <img class="materialboxed" src="{% static 'images/default_user.png' %}"
                              style="max-width: 350px"/>
@@ -22,6 +22,11 @@
                     <h5><strong>{% trans 'Bio' %}:</strong></h5>
                     <p>{{ user.profile.bio }}</p>
                 </div>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='{% url 'profile-update' %}'"
+                        >{% trans 'Edit your Profile' %}
+                    <i class="material-icons right">create</i>
+                </button>
             </div>
         </div>
     </div>
@@ -61,7 +66,7 @@
             <div class="row">
                 {% for comment in comments %}
                     <div class="col s6 m3">
-                        <div class="card grey darken-1 hoverable">
+                        <div class="card small grey darken-1 hoverable">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ post.title }}</span>
                                 <p>{{ comment.content|truncatechars:240 }}</p>
@@ -81,7 +86,7 @@
             <div class="row">
                 {% for post in liked_posts %}
                     <div class="col s6 m3">
-                        <div class="card grey darken-1 hoverable">
+                        <div class="card grey small darken-1 hoverable">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ post.title }}</span>
                                 <p>{{ post.content|truncatechars:240 }}</p>

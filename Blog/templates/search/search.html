@@ -6,29 +6,49 @@
 
     <form method="get" action=".">
         <div class="offset-md-1 cell-md-11">
-            <table>
-                {{ form.as_table }}
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="submit" value="{% trans 'Search' %}" class="button secondary">
-                    </td>
-                </tr>
-            </table>
+            {#            {{ form.non_field_errors }}#}
+            {#            {% for field in form.visible_fields %}#}
+            {#                <div class="input-field">#}
+            {#                    {{ field.label_tag }}#}
+            {#                    {{ field }}#}
+            {#                </div>#}
+            {#            {% endfor %}#}
+            <div class="input-field">
+                <label>{% trans 'Enter search criteria' %}...</label>
+                {{ form.q }}
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action"
+                    value="{% trans 'Search' %}">{% trans 'Search' %}
+                <i class="material-icons right">send</i>
+            </button>
+
         </div>
 
         {% if query %}
             <h3>{% trans 'Results' %}</h3>
+            <div class="row">
+                {% for result in page.object_list %}
+                    {#                <div data-role="panel">#}
+                    {#                    <p>#}
+                    {#                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>#}
+                    {#                    </p>#}
+                    {#                </div>#}
 
-            {% for result in page.object_list %}
-                <div data-role="panel">
-                    <p>
-                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
-                    </p>
-                </div>
-            {% empty %}
-                <p>{% trans 'No Results Found' %}.</p>
-            {% endfor %}
+                    <div class="col s6 m3">
+                        <div class="card small grey darken-2 hoverable">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ result.object.title }}</span>
+                                <p>{{ result.object.content|truncatechars:240 }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{ result.object.get_absolute_url }}">{% trans 'Read More' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>{% trans 'No Results Found' %}.</p>
+                {% endfor %}
+            </div>
 
             {% if page.has_previous or page.has_next %}
                 <div>
