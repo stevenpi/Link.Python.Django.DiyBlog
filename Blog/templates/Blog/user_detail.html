@@ -3,61 +3,110 @@
 {% load static %}
 
 {% block content %}
-    <div class="row">
-        <div class="cell-md-4 cell-sd-full">
-            <div class="img-container profile-picture">
-                {% if user.profile.image %}
-                    <img src="{{ user.profile.image.url }}" style="border-radius: 50%"/>
-                {% else %}
-                    <img src="{% static 'images/default_user.png' %}"/>
-                {% endif %}
+    <div class="card grey darken-2 z-depth-4 white-text">
+        <div class="card-content" style="height: 30em">
+            <div class="row">
+                <div class="col m4 s12">
+                    {% if user.profile.image %}
+                        <img class="materialboxed" src="{{ user.profile.image.url }}"
+                             style="max-width: 24em; border-radius: 50%"/>
+                    {% else %}
+                        <img class="materialboxed" src="{% static 'images/default_user.png' %}"
+                             style="max-width: 350px"/>
+                    {% endif %}
+                </div>
+                <h1>{% trans 'Username' %}: {{ user }}</h1>
+                <div class="m8 s12">
+                    <h5><strong>{% trans 'Name' %}:</strong> {{ user.first_name }}</h5>
+                    <h5><strong>{% trans 'Lastname' %}:</strong> {{ user.last_name }}</h5>
+                    <h5><strong>{% trans 'Bio' %}:</strong></h5>
+                    <p>{{ user.profile.bio }}</p>
+                </div>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="location.href='{% url 'profile-update' %}'"
+                        >{% trans 'Edit your Profile' %}
+                    <i class="material-icons right">create</i>
+                </button>
             </div>
-            <h1>{% trans 'Username' %}: {{ user }}</h1>
-        {% if request.user.is_authenticated %}
-            {% if request.user == user %}
-                <a href="{% url 'profile-update' %}" class="button secondary">{% trans 'Edit your Profile' %}</a>
-            {% endif %}
-        {% endif %}
-        </div>
-        <div class="cell-md-8 cell-sd-full">
-            <p><strong>{% trans 'Name' %}:</strong> {{ user.first_name }}</p>
-            <p><strong>{% trans 'Lastname' %}:</strong> {{ user.last_name }}</p>
-            <p><strong>{% trans 'Bio' %}:</strong></p>
-            <p>{{ user.profile.bio }}</p>
         </div>
     </div>
     <p class="padding"></p>
-    <div class="row">
-        <div class="cell-md-4 cell-sd-full">
+    <div class="card grey darken-2">
+        <div class="row">
+            <ul class="tabs">
+                <li class="tab col s4"><a class="active" href="#blogposts">{% trans 'Blogposts' %}</a></li>
+                <li class="tab col s4"><a href="#comments">{% trans 'Comments' %}</a></li>
+                <li class="tab col s4"><a href="#liked-posts">{% trans 'Liked Blogposts' %}</a></li>
+            </ul>
+        </div>
 
+        <!-- tab content 1 start -->
+        <div id="blogposts" class="col s12 tabs-content white-text">
             <h2>{% trans 'Blog posts' %}</h2>
-            {% for post in posts %}
-                <div data-role="panel">
-                    <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
-                    <p><strong>{% trans 'Created' %}:</strong> {{ post.created }}</p>
-                </div>
-                <p class="short-padding"></p>
-            {% endfor %}
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col s6 m3">
+                        <div class="card small grey darken-1 hoverable">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ post.title }}</span>
+                                <p>{{ post.content|truncatechars:240 }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="cell-md-4 cell-sd-full">
+        <!-- tab content 1 end -->
+        <!-- tab content 2 start -->
+        <div id="comments" class="col s12 tabs-content white-text">
             <h2>{% trans 'Comments' %}</h2>
-            {% for comment in comments %}
-                <div data-role="panel">
-                    <a href="{{ comment.post.get_absolute_url }}"><h3>{{ comment.content }}</h3></a>
-                    <p><strong>{% trans 'Created' %}:</strong> {{ comment.created }}</p>
-                </div>
-                <p class="short-padding"></p>
-            {% endfor %}
+            <div class="row">
+                {% for comment in comments %}
+                    <div class="col s6 m3">
+                        <div class="card small grey darken-1 hoverable">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ post.title }}</span>
+                                <p>{{ comment.content|truncatechars:240 }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{ comment.post.get_absolute_url }}">{% trans 'Read More' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="cell-md-4 cell-sd-full">
+        <!-- tab content 2 end -->
+        <!-- tab content 3 start -->
+        <div id="liked-posts" class="col s12 tabs-content white-text">
             <h2>{% trans 'Liked Posts' %}</h2>
-            {% for post in liked_posts %}
-                <div data-role="panel">
-                    <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
-                    <p><strong>{% trans 'Created' %}:</strong> {{ post.created }}</p>
-                </div>
-                <p class="short-padding"></p>
-            {% endfor %}
+            <div class="row">
+                {% for post in liked_posts %}
+                    <div class="col s6 m3">
+                        <div class="card grey small darken-1 hoverable">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ post.title }}</span>
+                                <p>{{ post.content|truncatechars:240 }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
+        <!-- tab content 3 end -->
     </div>
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var userImage = document.querySelectorAll('.materialboxed');
+            var tabs = document.querySelectorAll('.tabs');
+            M.Materialbox.init(userImage);
+            M.Tabs.init(tabs);
+        });
+    </script>
 {% endblock %}

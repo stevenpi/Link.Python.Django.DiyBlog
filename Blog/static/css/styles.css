@@ -95,6 +95,66 @@ a>button {
     height: 20em;
 }
 
+.parallax-container {
+    height: 15em;
+}
+
+.card-content {
+    margin-bottom: 0;
+}
+
+.tabs-content {
+    margin: 2em;
+}
+
+/*change tab colors*/
+.tabs .tab a{
+    color:#ffffff;
+}
+.tabs .tab a:hover,.tabs .tab a.active {
+	background-color:transparent;
+	color:#ffffff;
+}
+.tabs .tab.disabled a,.tabs .tab.disabled a:hover {
+	color:rgba(102,147,153,0.7);
+}
+.tabs .indicator {
+	background-color:#ffffff;
+}
+
+.tabs {
+    background-color: #616161;
+}
+
+/*change select colors*/
+ul.dropdown-content.select-dropdown li:not(.disabled) span {
+    color: #000000;
+}
+
+.select-dropdown {
+    color: white;!important;
+}
+
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu div {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.user-card {
+    background-size: cover;
+    width: 7em;
+    height: 15em;
+    background-position-x: -8em;
+}
+
 @media only screen and (max-width: 991px) {
     .display-only-low {
         display: table;

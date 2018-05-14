@@ -6,9 +6,22 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{% trans 'Add post as' %} {{ user.username }}</h1>
-    <form method="post" action="">{% csrf_token %}
-        {{ form }}
-        <input class="button secondary" type="submit" value="{% trans 'submit' %}">
-    </form>
+    <div class="white-text card grey darken-2">
+        <div class="card-content">
+            <h1>{% trans 'Add post as' %} {{ user.username }}</h1>
+            <form method="post" action="">{% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form.visible_fields %}
+                    <div class="input-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button class="btn waves-effect waves-light" type="submit" name="action"
+                        value="login">{% trans 'Submit' %}
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

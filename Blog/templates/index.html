@@ -7,101 +7,28 @@
 {% block content %}
 
     <h1 style="padding-bottom: 0.5em">{% trans 'Welcome to the Blog!' %}</h1>
-    <div class="row padding">
-        <div class="cell-md-full cell-lg-4 place-middle-outer">
-            <a href="{% url 'posts' %}" class="place-middle-inner">
-                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-violet">
-                    <div class="slide-front">
-                        <span class="mif-file-text icon"></span>
-                    </div>
-                    <div class="slide-back ">
-                    </div>
-                    <span class="branding-bar">{% trans 'View all Posts' %}</span>
-                </div>
-            </a>
-        </div>
-        <p class="padding display-only-low cell-md-full"></p>
-        <div class="cell-md-full cell-lg-4 place-middle-outer">
-            <a href="{% url 'users' %}" class="place-middle-inner">
-                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-green">
-                    <div class="slide-front">
-                        <span class="mif-users icon"></span>
-                    </div>
-                    <div class="slide-back ">
-                    </div>
-                    <span class="branding-bar">{% trans 'View all Users' %}</span>
-                </div>
-            </a>
-        </div>
-        <p class="padding display-only-low cell-md-full cell-lg-0"></p>
-        {% if user.is_authenticated %}
-            <div class="cell-md-full cell-lg-4 place-middle-outer">
-                <a href="{% url 'logout' %}" class="place-middle-inner">
-                    <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-red">
-                        <span class="branding-bar">{% trans 'Logout' %}</span>
-                        <div class="slide-front">
-                            <span class="mif-lock icon"></span>
-                        </div>
-                        <div class="slide-back ">
-                        </div>
-                    </div>
-                </a>
-            </div>
-        {% else %}
-            <div id="login-tile-container" class="cell-md-full cell-lg-4 place-middle-outer">
-
-                <div class="cell-md-full cell-lg-4">
-                    <a href="{% url 'login' %}" class="place-middle-inner">
-                        <div data-size="wide" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
-                            <div class="slide-front">
-                                <span class="mif-key icon"></span>
-                            </div>
-                            <div class="slide-back ">
-                            </div>
-                            <span class="branding-bar">{% trans 'Login' %}</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="cell-md-full cell-lg-4 place-bottom-absolute">
-                    <a href="{% url "social:begin" "google-oauth2" %}" class="place-middle-inner">
-                        <div data-size="middle" data-role="tile" data-effect="hover-zoom-right" class="bg-red">
-                            <div class="slide-front">
-                                <span class="mif-google-plus icon"></span>
-                            </div>
-                            <div class="slide-back ">
-                            </div>
-                            <span class="branding-bar">{% trans 'Google Login' %}</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="cell-md-full cell-lg-4 place-bottom-absolute" style="margin-left: 10em">
-                    <a href="{% url "signup" %}" class="place-middle-inner">
-                        <div data-size="middle" data-role="tile" data-effect="hover-zoom-right" class="bg-indigo">
-                            <div class="slide-front">
-                                <span class="mif-unlock icon"></span>
-                            </div>
-                            <div class="slide-back ">
-                            </div>
-                            <span class="branding-bar">{% trans 'Signup' %}</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        {% endif %}
-    </div>
     <div class="row">
-
-        <div class="cell-md-full cell-lg-4 place-middle-outer">
-            <a href="{% url 'settings' %}" class="place-middle-inner">
-                <div data-size="large" data-role="tile" data-effect="hover-zoom-right" class="bg-blue">
-                    <div class="slide-front">
-                        <span class="mif-cog icon"></span>
-                    </div>
-                    <div class="slide-back ">
-                    </div>
-                    <span class="branding-bar">{% trans 'Settings' %}</span>
+        <div class="col s6 m3">
+            <div class="card grey darken-2 hoverable">
+                <div class="card-content white-text">
+                    <span class="card-title">Posts</span>
+                    <p>Watch every single post, of every user posted.</p>
                 </div>
-            </a>
+                <div class="card-action">
+                    <a href="{% url 'posts' %}">{% trans 'View all Posts' %}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m3">
+            <div class="card grey darken-2 hoverable">
+                <div class="card-content white-text">
+                    <span class="card-title">Users</span>
+                    <p>look up all the users registered in this application</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'users' %}">{% trans 'View all Users' %}</a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

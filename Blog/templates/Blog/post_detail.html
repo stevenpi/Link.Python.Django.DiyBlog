@@ -1,63 +1,61 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block content %}
-    <div data-role="panel">
-        <h1>{{ post }}</h1>
-        <p>{% trans 'Posted by:' %} <a href="{{ post.user.profile.get_absolute_url }}">{{ post.user }}</a> {% trans 'on' %} {{ post.created }}</p>
-        {% if user.is_authenticated %}
-            <a class="button alert place-right"
-               href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=False"><span
-                    class="mif-thumbs-down icon"></span></a>
-            <a class="button success place-right"
-               href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=True"><span
-                    class="mif-thumbs-up icon"></span></a>
-        {% endif %}
-        {% if post.vote_score > 99 %}
-            <div>
-                <div class="place-right point-tile" data-role="tile" data-size="small"><p
-                        class="pos-absolute pos-center" data-role="popover"
-                        data-popover-text="<div class='text-center'>{{ post.vote_score }}</div>">99+</p></div>
+    <div class="card">
+        <div class="card-content">
+            <h1>{{ post }}</h1>
+            <p>{% trans 'Posted by:' %} <a
+                    href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> {% trans 'on' %} {{ post.created }}</p>
+            <div class="row">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=False"
+                       class="waves-effect waves-light btn"><i
+                            class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
+                    <a href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=True"
+                       class="waves-effect waves-light btn"><i
+                            class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
+                {% endif %}
+                <h4>{% trans 'Score' %}: {{ post.vote_score }}</h4>
             </div>
 
-        {% else %}
-            <div class="place-right point-tile" data-role="tile" data-size="small"><p
-                    class="pos-absolute pos-center">{{ post.vote_score }}</p></div>
-        {% endif %}
-    </div>
-    <div data-role="panel">
-        <p>{{ post.content }}</p>
-    </div>
-    <div class="shariff" data-button-style="icon"></div>
-    <p class="padding"></p>
-    <h2>{% trans 'Comments' %}</h2>
-    {% for comment in comments %}
-        <div data-role="panel">
-            <p>{{ comment.content }}</p>
-            <p>{% trans 'by' %} <a href="{{ comment.user.profile.get_absolute_url }}">{{ comment.user }}</a> {% trans 'at' %} {{ comment.created }}</p>
-            {% if user.is_authenticated %}
-                <a class="button alert place-right"
-                   href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=False"><span
-                        class="mif-thumbs-down icon"></span></a>
-                <a class="button success place-right"
-                   href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=True"><span
-                        class="mif-thumbs-up icon"></span></a>
-            {% endif %}
-            {% if comment.vote_score > 99 %}
-                <div>
-                    <div class="place-right point-tile" data-role="tile" data-size="small"><p
-                            class="pos-absolute pos-center" data-role="popover"
-                            data-popover-text="<div class='text-center'>{{ comment.vote_score }}</div>">99+</p></div>
-                </div>
-
-            {% else %}
-                <div class="place-right point-tile" data-role="tile" data-size="small"><p
-                        class="pos-absolute pos-center">{{ comment.vote_score }}</p></div>
-            {% endif %}
+            <p class="flow-text">{{ post.content }}</p>
+            <div class="card-action">
+                <div class="shariff" data-button-style="icon"></div>
+            </div>
         </div>
-        <p class="short-padding"></p>
-    {% endfor %}
-    <div data-role="panel">
-        <a href="{% url 'comment-add' pk=post.id %}"><p>{% trans 'Add your own comment!' %}</p></a>
+    </div>
+    <p class="padding"></p>
+    <div class="card">
+        <div class="card-content">
+            <h2>{% trans 'Comments' %}</h2>
+
+            <ul class="collection">
+                {% for comment in comments %}
+                    <li class="collection-item avatar">
+                        {% if comment.user.profile.image %}
+                            <img src="{{ user.profile.image.url }}" class="circle"/>
+                        {% else %}
+                            <img src="{% static 'images/default_user.png' %}" class="circle"/>
+                        {% endif %}
+                        <span class="title">{{ comment.user }}</span>
+                        <p>{{ comment.content }}</p>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=False"
+                               class="waves-effect waves-light btn"><i
+                                    class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
+                            <a href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=True"
+                               class="waves-effect waves-light btn"><i
+                                    class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
+                        {% endif %}
+                        <h6>{% trans 'Score' %}: {{ comment.vote_score }}</h6>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'comment-add' pk=post.id %}" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">add</i></a>
+        {% endif %}
+        </div>
     </div>
 {% endblock %}

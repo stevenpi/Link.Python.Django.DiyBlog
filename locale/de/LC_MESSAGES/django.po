@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-30 08:56+0000\n"
+"POT-Creation-Date: 2018-05-14 06:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: Blog/blogForms.py:14
-msgid "Max 64 characters"
-msgstr "Max. 64 Zeichen"
-
-#: Blog/blogForms.py:15
-msgid "Max 2048 characters"
-msgstr "Max. 2048 Zeichen"
 
 #: Blog/blogForms.py:19
 msgid "Title"
@@ -57,18 +49,20 @@ msgid "Image"
 msgstr "Bild"
 
 #: Blog/templates/Blog/comment_add.html:5
+#: Blog/templates/Blog/comment_add.html:12
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
 
-#: Blog/templates/Blog/comment_add.html:11
-#, python-format
-msgid "Add comment for %(title)s as %(name)s"
-msgstr "Kommentar hinzufügen für %(title)s als %(name)s"
-
-#: Blog/templates/Blog/comment_add.html:14
+#: Blog/templates/Blog/comment_add.html:15
 msgid "Add your comment!"
 msgstr "Schreibe einen Kommentar!"
 
+#: Blog/templates/Blog/comment_add.html:18
+#: Blog/templates/Blog/post_form.html:21 Blog/templates/Blog/signup.html:22
+#: templates/registration/login.html:26
+#: templates/registration/password_reset_form.html:11
+msgid "Submit"
+msgstr "Senden"
 #: Blog/templates/Blog/comment_add.html:16
 #: Blog/templates/Blog/post_form.html:12
 #: Blog/templates/Blog/profile_update.html:24
@@ -76,97 +70,86 @@ msgstr "Schreibe einen Kommentar!"
 msgid "submit"
 msgstr "Senden"
 
-#: Blog/templates/Blog/comment_add.html:19
+#: Blog/templates/Blog/comment_add.html:26
 msgid "something went wrong, please try again."
 msgstr "Etwas ist schiefgelaufen. Bitte Seite neuladen."
 
-#: Blog/templates/Blog/post_detail.html:7
+#: Blog/templates/Blog/post_detail.html:11
 msgid "Posted by:"
 msgstr "Geposted von:"
 
-#: Blog/templates/Blog/post_detail.html:7
+#: Blog/templates/Blog/post_detail.html:12
 msgid "on"
 msgstr "am"
 
-#: Blog/templates/Blog/post_detail.html:33
-#: Blog/templates/Blog/user_detail.html:38
+#: Blog/templates/Blog/post_detail.html:17
+#: Blog/templates/Blog/post_detail.html:53
+msgid "Dislike"
+msgstr "Mag ich nicht"
+
+#: Blog/templates/Blog/post_detail.html:21
+#: Blog/templates/Blog/post_detail.html:57
+msgid "Like"
+msgstr "Mag ich"
+
+#: Blog/templates/Blog/post_detail.html:24
+#: Blog/templates/Blog/post_detail.html:59
+msgid "Score"
+msgstr "Punkte"
+
+#: Blog/templates/Blog/post_detail.html:38
+#: Blog/templates/Blog/user_detail.html:33
+#: Blog/templates/Blog/user_detail.html:60
 msgid "Comments"
 msgstr "Kommentare"
 
-#: Blog/templates/Blog/post_detail.html:37
-msgid "by"
-msgstr "von"
-
-#: Blog/templates/Blog/post_detail.html:37
-msgid "at"
-msgstr "am"
-
-#: Blog/templates/Blog/post_detail.html:61
-msgid "Add your own comment!"
-msgstr "Schreibe einen Kommentar"
-
-#: Blog/templates/Blog/post_form.html:5 Blog/templates/base_generic.html:35
+#: Blog/templates/Blog/post_form.html:5 Blog/templates/base_generic.html:37
+#: Blog/templates/base_generic.html:52
 msgid "Add Post"
-msgstr "Post schreiben"
+msgstr "Post schreibem"
 
-#: Blog/templates/Blog/post_form.html:9
+#: Blog/templates/Blog/post_form.html:11
 msgid "Add post as"
-msgstr "Post schreiben als"
+msgstr "Post schrieben als"
 
 #: Blog/templates/Blog/post_list.html:5
 msgid "Posts"
 msgstr "Posts"
 
-#: Blog/templates/Blog/post_list.html:6
-msgid "Tags"
-msgstr "Tags"
-
-#: Blog/templates/Blog/post_list.html:12
+#: Blog/templates/Blog/post_list.html:7 Blog/templates/Blog/post_list.html:15
+#: Blog/templates/Blog/post_list.html:46
 msgid "No Tag"
-msgstr "Alle Posts"
+msgstr "Kein Tag"
 
-#: Blog/templates/Blog/post_list.html:18
+#: Blog/templates/Blog/post_list.html:22
 msgid "No Tags available..."
 msgstr "Keine Tags verfügbar..."
 
-#: Blog/templates/Blog/post_list.html:34
+#: Blog/templates/Blog/post_list.html:35
+#: Blog/templates/Blog/user_detail.html:50
+#: Blog/templates/Blog/user_detail.html:70
+#: Blog/templates/Blog/user_detail.html:90
 msgid "Read More"
-msgstr "Mehr lesen"
+msgstr "Beitrag Lesen"
 
-#: Blog/templates/Blog/post_list.html:40
+#: Blog/templates/Blog/post_list.html:55
 msgid "There are no posts available..."
 msgstr "Keine Posts verfügbar..."
 
-#: Blog/templates/Blog/settings.html:5 Blog/templates/base_generic.html:44
-#: Blog/templates/index.html:102
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: Blog/templates/Blog/settings.html:9
-msgid "Language Settings"
-msgstr "Spracheinstellungen"
-
-#: Blog/templates/Blog/settings.html:29
-msgid "Change Language"
-msgstr "Sprache ändern"
-
-#: Blog/templates/Blog/settings.html:36
-msgid "Change Password"
-msgstr "Passwort ändern"
-
-#: Blog/templates/Blog/settings.html:39
-msgid "Change it"
-msgstr "Passwort ändern"
-
-#: Blog/templates/Blog/signup.html:7 Blog/templates/Blog/signup.html:20
-#: Blog/templates/base_generic.html:40
+#: Blog/templates/Blog/signup.html:8 Blog/templates/base_generic.html:41
+#: Blog/templates/base_generic.html:56
 msgid "Sign up"
-msgstr "Registrieren"
+msgstr "Registieren"
 
-#: Blog/templates/Blog/user_detail.html:15
+#: Blog/templates/Blog/signup.html:30
+msgid "Signup with Google"
+msgstr "Mit Google einloggen"
+
+#: Blog/templates/Blog/user_detail.html:18
 msgid "Username"
 msgstr "Benutzername"
 
+#: Blog/templates/Blog/user_detail.html:20
 #: Blog/templates/Blog/user_detail.html:14
 msgid "Edit your Profile"
 msgstr "Profil Bearbeiten"
@@ -175,48 +158,55 @@ msgstr "Profil Bearbeiten"
 msgid "Name"
 msgstr "Vorname"
 
-#: Blog/templates/Blog/user_detail.html:19
+#: Blog/templates/Blog/user_detail.html:21
 msgid "Lastname"
 msgstr "Nachname"
 
-#: Blog/templates/Blog/user_detail.html:28
-msgid "Blog posts"
-msgstr "Blogposts"
+#: Blog/templates/Blog/user_detail.html:22
+msgid "Bio"
+msgstr "Beschreibung"
 
 #: Blog/templates/Blog/user_detail.html:32
-#: Blog/templates/Blog/user_detail.html:42
-#: Blog/templates/Blog/user_detail.html:52
-msgid "Created"
-msgstr "Erstellt"
+msgid "Blogposts"
+msgstr "Posts"
 
-#: Blog/templates/Blog/user_detail.html:48
+#: Blog/templates/Blog/user_detail.html:34
+msgid "Liked Blogposts"
+msgstr "Posts mit 'Mag ich' bewertet"
+
+#: Blog/templates/Blog/user_detail.html:40
+msgid "Blog posts"
+msgstr "Posts"
+
+#: Blog/templates/Blog/user_detail.html:80
 msgid "Liked Posts"
-msgstr "Gelikte Posts"
+msgstr "Posts mit 'Mag ich' bewertet"
 
-#: Blog/templates/Blog/user_list.html:5
+#: Blog/templates/Blog/user_list.html:6
 msgid "Users"
 msgstr "Benutzer"
 
-#: Blog/templates/Blog/user_list.html:16
+#: Blog/templates/Blog/user_list.html:27
 msgid "Details"
 msgstr "Details"
 
-#: Blog/templates/Blog/user_list.html:22
+#: Blog/templates/Blog/user_list.html:35
 msgid "There are no users..."
 msgstr "Keine Benutzer verfügbar..."
 
-#: Blog/templates/base_generic.html:30
+#: Blog/templates/base_generic.html:33 Blog/templates/base_generic.html:48
 msgid "Home"
-msgstr "Home"
+msgstr "Start"
 
-#: Blog/templates/base_generic.html:31
+#: Blog/templates/base_generic.html:34 Blog/templates/base_generic.html:49
 msgid "All Posts"
 msgstr "Alle Posts"
 
-#: Blog/templates/base_generic.html:33
+#: Blog/templates/base_generic.html:35 Blog/templates/base_generic.html:50
 msgid "All Bloggers"
 msgstr "Alle Benutzer"
 
+#: Blog/templates/base_generic.html:38 Blog/templates/base_generic.html:53
 #: Blog/templates/base_generic.html:37 Blog/templates/index.html:41
 #: Blog/templates/search/search.html:14
 msgid "Search"
@@ -226,51 +216,35 @@ msgstr "Suchen"
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: Blog/templates/base_generic.html:39 Blog/templates/index.html:61
+#: Blog/templates/base_generic.html:40 Blog/templates/base_generic.html:55
 msgid "Login"
 msgstr "Einloggen"
 
-#: Blog/templates/base_generic.html:60
-msgid "previous"
-msgstr "vorherige"
+#: Blog/templates/base_generic.html:112
+msgid "A Blog created by a the django tutorial of mozilla developers!"
+msgstr "Ein Blog basierend auf dem Django Tutorial von Mozilla Developers!"
 
-#: Blog/templates/base_generic.html:63
-msgid "Page"
-msgstr "Seite"
+#: Blog/templates/base_generic.html:115
+msgid "Links"
+msgstr "Links"
 
-#: Blog/templates/base_generic.html:67
-msgid "next"
-msgstr "nächste"
+#: Blog/templates/base_generic.html:122
+msgid "Settings"
+msgstr "Einstellungen"
 
 #: Blog/templates/index.html:9
 msgid "Welcome to the Blog!"
-msgstr "Willkommen im Blog!"
+msgstr "Willkommen beim Blog!"
 
-#: Blog/templates/index.html:19
+#: Blog/templates/index.html:18
 msgid "View all Posts"
 msgstr "Alle Posts ansehen"
 
-#: Blog/templates/index.html:32
+#: Blog/templates/index.html:29
 msgid "View all Users"
 msgstr "Alle Benutzer ansehen"
 
-#: Blog/templates/index.html:73
-msgid "Google Login"
-msgstr "mit Google einloggen"
-
-#: Blog/templates/index.html:85
-msgid "Signup"
-msgstr "Registration"
-
-#: Blog/templates/search/search.html:21
-msgid "Results"
-msgstr "Ergebnisse"
-
-#: Blog/templates/search/search.html:44
-msgid "No entities could be found according to the search criteria"
-msgstr "Keine Ergebnisse gefunden basierend auf den Suchkriterien"
-
-#: DiyBlog/settings.py:73
+#: DiyBlog/settings.py:72
 msgid "English"
 msgstr "Englisch"
 
@@ -280,30 +254,36 @@ msgstr "Deutsch"
 
 #: templates/registration/logged_out.html:7
 msgid "Successfully Logged Out"
-msgstr "Erfolgreich Ausgeloggt"
+msgstr "Erfolgreich ausgeloggt"
 
 #: templates/registration/logged_out.html:8
 msgid "You will be redirected to the homepage in"
-msgstr "Du wirst zur Homepage weitergeleitet in"
+msgstr "Weiterleitung zur Homepage in"
 
 #: templates/registration/logged_out.html:8
 msgid "seconds..."
 msgstr "Sekunden..."
 
-#: templates/registration/login.html:27
+#: templates/registration/login.html:31
 #: templates/registration/password_reset_form.html:7
 msgid "Forgot password"
 msgstr "Passwort vergessen"
 
+#: templates/registration/login.html:35
+msgid "Login with Google"
+msgstr "Mit Google Einloggen"
+
 #: templates/registration/password_change_done.html:5
 msgid "Your password has been changed"
-msgstr "Das Passwort wurde gesetzt"
+msgstr "Das Passwort wurde geändert"
 
 #: templates/registration/password_change_done.html:6
-#, fuzzy
-#| msgid "You will be redirected to the homepage in"
 msgid "you may proceed to the homepage now"
-msgstr "Zurück zur Homepage"
+msgstr "Zur Homepage"
+
+#: templates/registration/password_change_form.html:8
+msgid "submit"
+msgstr "Senden"
 
 #: templates/registration/password_reset_complete.html:7
 msgid "Success"
@@ -321,35 +301,31 @@ msgstr "Passwort ändern"
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used."
-msgstr ""
-"Der link zum zurücksetzen des Passworts war fehlerhaft. Wahrscheinlich wurde "
-"dieser bereits benutzt"
+msgstr "Der Reset-Link war ungültig, vermutlich weil Dieser bereits benutzt wurde."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid "Please request a new reset."
-msgstr "Bitte eine neue Zurücksetzung anfordern"
+msgstr ""
 
 #: templates/registration/password_reset_done.html:7
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered."
-msgstr "Ein Link zum Zurücksetzen des Passworts wurde gesendet."
+msgstr "Bitte neuen Reset Anfordern."
 
 #: templates/registration/password_reset_done.html:8
 msgid "You should receive them shortly."
-msgstr "Die Mail sollte in Kürze eintreffen."
+msgstr "Es sollte in Kürze eintreffen."
 
 #: templates/registration/password_reset_done.html:9
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
-msgstr ""
-"Wenn keine Mail erhalten wurde, bitte sicherstellen das die richtige Adresse "
-"eingegeben wurde. Bitte auch Spam Ordner überprüfen."
+msgstr "Wenn keine Email erhalten wurde, bitte kontrollieren ob die richtige Email Adresse angegeben wurde und den Spam Ordner überprüfen."
 
 #: templates/registration/password_reset_email.html:3
 msgid "Initiate reset by clicking the link below"
-msgstr "Auf den Link klicken um das Passwort zurückzusetzen"
+msgstr "Reset Anfordern"
 
 #: templates/registration/password_reset_email.html:7
 msgid "Sincerely"

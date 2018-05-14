@@ -6,12 +6,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+          integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Add additional CSS in static file -->
     {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <!-- special rss tag -->
@@ -20,30 +23,46 @@
     <link rel="stylesheet" href="{% static 'css/shariff.min.css' %}">
 </head>
 
-<body class="bg">
+<body class="grey lighten-1">
 {% load i18n %}
 <div class="nav-bar">
 
     {% block sidebar %}
-        <div class="app-bar-expand-md bg-blue fg-white" data-role="appbar">
-            <ul class="app-bar-menu" style="width: 100%">
-                <li><a href="{% url 'index' %}"><span class="mif-home icon"></span> {% trans 'Home' %}</a></li>
-                <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> {% trans 'All Posts' %}</a>
-                </li>
-                <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> {% trans 'All Bloggers' %}</a></li>
-                <li><a href="{% url 'haystack_search' %}"><span class="mif-search icon"></span> {% trans 'Search' %}</a></li>
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'post-add' %}"><span class="mif-pencil icon"></span> {% trans 'Add Post' %}</a>
-                    </li>
-                    <li><a href="{% url 'logout' %}"><span class="mif-lock icon"></span> {% trans 'Logout' %}</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}"><span class="mif-key icon"></span> {% trans 'Login' %}</a></li>
-                    <li><a href="{% url 'signup' %}"><span class="mif-unlock icon"></span> {% trans 'Sign up' %}</a></li>
-                {% endif %}
+        <nav class="grey darken-4">
+            <div class="nav-wrapper">
+                <a class="brand-logo" href="{% url 'index' %}">DIY-Blog</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{% url 'index' %}">{% trans 'Home' %}</a></li>
+                    <li><a href="{% url 'posts' %}">{% trans 'All Posts' %}</a></li>
+                    <li><a href="{% url 'users' %}">{% trans 'All Bloggers' %}</a></li>
+                    <li><a href="{% url 'haystack_search' %}"><span class="mif-search icon"></span> {% trans 'Search' %}
+                    </a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'post-add' %}">{% trans 'Add Post' %}</a></li>
+                        <li><a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">{% trans 'Login' %}</a></li>
+                        <li><a href="{% url 'signup' %}">{% trans 'Sign up' %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
 
-                <li class="nav-bar-place-right"><a href="{% url 'settings' %}"><span
-                        class="mif-cog icon"></span> {% trans 'Settings' %}</a></li>
-            </ul>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{% url 'index' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'posts' %}">{% trans 'All Posts' %}</a></li>
+            <li><a href="{% url 'users' %}">{% trans 'All Bloggers' %}</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'post-add' %}">{% trans 'Add Post' %}</a></li>
+                <li><a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">{% trans 'Login' %}</a></li>
+                <li><a href="{% url 'signup' %}">{% trans 'Sign up' %}</a></li>
+            {% endif %}
+        </ul>
+        <div class="parallax-container">
+            <div class="parallax"><img src="{% static 'images/banner.jpg' %}"></div>
         </div>
 
         <p class="large-padding"></p>
@@ -54,34 +73,103 @@
     {% block content %}{% endblock %}
     {% block pagination %}
         {% if is_paginated %}
-            <div class="pagination">
-              <span class="page-links">
-                  {% if page_obj.has_previous %}
-                      <a class="button secondary"
-                         href="{{ request.path }}?page={{ page_obj.previous_page_number }}&tag={{ current_tag }}"> {% trans 'previous' %}</a>
-                  {% endif %}
-                  <span class="page-current" datarole=>
-                      {% trans 'Page' %} {{ page_obj.number }}
-                  </span>
-                  {% if page_obj.has_next %}
-                      <a class="button secondary"
-                         href="{{ request.path }}?page={{ page_obj.next_page_number }}&tag={{ current_tag }}">{% trans 'next' %}</a>
-                  {% endif %}
-              </span>
+            <div class="row">
+                <div class="col m6 offset-m3 s12">
+
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="waves-effect"><a
+                                    href="{{ request.path }}?page={{ page_obj.previous_page_number }}&tag={{ current_tag }}"><i
+                                    class="material-icons">chevron_left</i></a></li>
+                        {% else %}
+                            <li class="disabled"><i class="material-icons">chevron_left</i></li>
+                        {% endif %}
+
+                        {% for i in pages %}
+                            {% if page_obj.number == i %}
+                                <li class="active"><a>{{ i }}</a></li>
+                            {% else %}
+                                <li class="waves-effect"><a href="?page={{ i }}&tag={{ current_tag }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="waves-effect"><a
+                                    href="{{ request.path }}?page={{ page_obj.next_page_number }}&tag={{ current_tag }}"><i
+                                    class="material-icons">chevron_right</i></a></li>
+                        {% else %}
+                            <li class="disabled"><i class="material-icons">chevron_right</i></li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         {% endif %}
     {% endblock %}
-
-
 </div>
+
+{% block footer %}
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/footer-banner.jpg' %}"></div>
+    </div>
+    <footer class="page-footer grey darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l4 s12">
+                    <h5 class="white-text">DIY-Blog</h5>
+                    <p class="grey-text text-lighten-4">{% trans 'A Blog created by a the django tutorial of mozilla developers!' %}</p>
+                </div>
+                <div class="col l4 s12">
+                    <h5 class="white-text">{% trans 'Links' %}</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://developer.mozilla.org/de/">Mozilla
+                            Developers</a></li>
+                    </ul>
+                </div>
+                <div class="col l4 s12">
+                    <h5>{% trans 'Settings' %}</h5>
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <div class="row">
+
+                            <div class="input-field col s12">
+                                <select name="language" onchange="this.form.submit()">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"
+                                                {% if language.code == LANGUAGE_CODE %}
+                                                selected
+                                                {% endif %}>{{ language.name_local }} ({{ language.code }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <label>Language Settings</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 - 4teamwork AG
+                <a class="grey-text text-lighten-4 right" href="https://www.4teamwork.ch/">4teamwork.ch</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+<script src="{% static 'js/shariff.min.js' %}"></script>
 <script type="application/javascript">
-{# only to color the hamburger button white, there seems to be no way to do that in html/css definition #}
-    $(document).ready(function() {
-        $('.hamburger').removeClass('dark').addClass('bright');
+    document.addEventListener('DOMContentLoaded', function () {
+        var sidenav = document.querySelectorAll('.sidenav');
+        var select = document.querySelectorAll('select');
+        var parallax = document.querySelectorAll('.parallax');
+        M.Sidenav.init(sidenav);
+        M.FormSelect.init(select);
+        M.Parallax.init(parallax);
     });
 </script>
-<script src="{% static 'js/shariff.min.js' %}"></script>
 </body>
 </html>
