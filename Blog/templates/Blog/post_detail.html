@@ -4,7 +4,7 @@
 {% block content %}
     <div data-role="panel">
         <h1>{{ post }}</h1>
-        <p>{% trans 'Posted by:' %} <a href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> {% trans 'on' %} {{ post.created }}</p>
+        <p>{% trans 'Posted by:' %} <a href="{{ post.user.profile.get_absolute_url }}">{{ post.user }}</a> {% trans 'on' %} {{ post.created }}</p>
         {% if user.is_authenticated %}
             <a class="button alert place-right"
                href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=False"><span
@@ -34,7 +34,7 @@
     {% for comment in comments %}
         <div data-role="panel">
             <p>{{ comment.content }}</p>
-            <p>{% trans 'by' %} <a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a> {% trans 'at' %} {{ comment.created }}</p>
+            <p>{% trans 'by' %} <a href="{{ comment.user.profile.get_absolute_url }}">{{ comment.user }}</a> {% trans 'at' %} {{ comment.created }}</p>
             {% if user.is_authenticated %}
                 <a class="button alert place-right"
                    href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=False"><span

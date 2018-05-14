@@ -11,14 +11,6 @@ from vote.models import VoteModel
 from taggit.managers import TaggableManager
 
 
-def get_absolute_url(self):
-    return reverse('user-detail', args=[int(self.id)])
-
-
-# inject get_absolute_url method to `User` class by Django
-User.get_absolute_url = get_absolute_url
-
-
 class ContentModelMixin(VoteModel, models.Model):
     id = models.AutoField(primary_key=True)
     content = models.CharField(max_length=2048)
@@ -53,6 +45,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=1024, blank=True)
     image = models.ImageField(blank=True)
+
+    def get_absolute_url(self):
+        return reverse('user-detail', args=[str(self.user.username)])
 
 
 @receiver(post_save, sender=User)
