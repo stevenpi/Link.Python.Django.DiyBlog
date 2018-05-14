@@ -102,3 +102,4 @@ ENV/
 /DiyBlog/AppCredentials.py
 
 media/
+/DiyBlog/whoosh_index/

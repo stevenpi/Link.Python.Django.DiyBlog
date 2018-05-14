@@ -218,6 +218,11 @@ msgid "All Bloggers"
 msgstr "Alle Benutzer"
 
 #: Blog/templates/base_generic.html:37 Blog/templates/index.html:41
+#: Blog/templates/search/search.html:14
+msgid "Search"
+msgstr "Suchen"
+
+#: Blog/templates/base_generic.html:38 Blog/templates/index.html:41
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -257,7 +262,15 @@ msgstr "mit Google einloggen"
 msgid "Signup"
 msgstr "Registration"
 
-#: DiyBlog/settings.py:72
+#: Blog/templates/search/search.html:21
+msgid "Results"
+msgstr "Ergebnisse"
+
+#: Blog/templates/search/search.html:44
+msgid "No entities could be found according to the search criteria"
+msgstr "Keine Ergebnisse gefunden basierend auf den Suchkriterien"
+
+#: DiyBlog/settings.py:73
 msgid "English"
 msgstr "Englisch"
 
@@ -349,3 +362,8 @@ msgstr "Das DIY-Blog Team"
 #: templates/registration/password_reset_form.html:11
 msgid "Submit"
 msgstr "Senden"
+
+#: templates/search/search.html:30
+msgid "No Results Found"
+msgstr "Keine Ergebnisse"
+

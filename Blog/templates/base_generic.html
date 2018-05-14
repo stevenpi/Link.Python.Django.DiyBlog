@@ -31,6 +31,7 @@
                 <li><a href="{% url 'posts' %}"><span class="mif-file-text icon"></span> {% trans 'All Posts' %}</a>
                 </li>
                 <li><a href="{% url 'users' %}"><span class="mif-users icon"></span> {% trans 'All Bloggers' %}</a></li>
+                <li><a href="{% url 'haystack_search' %}"><span class="mif-search icon"></span> {% trans 'Search' %}</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'post-add' %}"><span class="mif-pencil icon"></span> {% trans 'Add Post' %}</a>
                     </li>

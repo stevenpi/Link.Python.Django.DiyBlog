@@ -41,3 +41,18 @@ python manage.py runserver
 ```
 
 The webapp can now be reached under `localhost:8000`.
+
+
+## Maintaining the WebApp
+
+### Updating the Index of the Searchengine
+
+The Webapp is using Haystack with the Whoosh backend to provide proper searching functionality.
+To get the searchengine to work, the index of the searchengine must be updated regularly.  
+This can be done easily with one simple function in manage.py:
+
+```
+python manage.py rebuild_index
+```  
+
+This commands loads every single entity into the searchindex of the searchengine
