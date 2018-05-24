@@ -29,12 +29,12 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns += i18n_patterns(
+    path('accounts/', include('django.contrib.auth.urls')),
     path('blog/', include('Blog.urls')),
     path('', RedirectView.as_view(url='/blog/'), name='home'),
     url(r'^signup/$', app_views.signup, name='signup'),

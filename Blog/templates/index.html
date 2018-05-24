@@ -12,7 +12,7 @@
             <div class="card grey darken-2 hoverable">
                 <div class="card-content white-text">
                     <span class="card-title">Posts</span>
-                    <p>Watch every single post, of every user posted.</p>
+                    <p>{% trans 'Watch every single post, of every user posted.' %}</p>
                 </div>
                 <div class="card-action">
                     <a href="{% url 'posts' %}">{% trans 'View all Posts' %}</a>
@@ -23,7 +23,7 @@
             <div class="card grey darken-2 hoverable">
                 <div class="card-content white-text">
                     <span class="card-title">Users</span>
-                    <p>look up all the users registered in this application</p>
+                    <p>{% trans 'look up all the users registered in this application.' %}</p>
                 </div>
                 <div class="card-action">
                     <a href="{% url 'users' %}">{% trans 'View all Users' %}</a>
