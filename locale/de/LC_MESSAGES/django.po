@@ -245,6 +245,10 @@ msgid "View all Users"
 msgstr "Alle Benutzer ansehen"
 
 #: DiyBlog/settings.py:72
+
+msgid "Your Profile has been updated."
+msgstr "Das Profil wurde aktualisiert."
+
 msgid "English"
 msgstr "Englisch"
 

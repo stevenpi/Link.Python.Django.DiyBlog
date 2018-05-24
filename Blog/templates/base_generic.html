@@ -70,6 +70,13 @@
 </div>
 
 <div class="base-content">
+    {% if messages %}
+        <script type="application/javascript">
+            {% for message in messages %}
+                M.toast({html: '{{ message }}'});
+            {% endfor %}
+        </script>
+    {% endif %}
     {% block content %}{% endblock %}
     {% block pagination %}
         {% if is_paginated %}
