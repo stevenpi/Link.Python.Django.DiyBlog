@@ -2,6 +2,7 @@ import datetime
 import random
 from uuid import uuid4
 
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
@@ -51,6 +53,7 @@ def update_profile(request):
         if profile_form.is_valid():
             profile_form.save()
         forms = [user_form, profile_form]
+        messages.success(request, _("Your Profile has been updated."))
     else:
         user = User.objects.get(pk=request.user.id)
         profile = Profile.objects.get(user=user)

@@ -166,3 +166,6 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     }
 }
+
+# django-messages configuration
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
