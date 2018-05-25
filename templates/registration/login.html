@@ -6,7 +6,7 @@
         <div class="card col m6 offset-m3 grey darken-2">
 
             <div id="card-content">
-                <span class="card-title grey-text text-lighten-4"><h1>Log into your Account</h1></span>
+                <span class="card-title grey-text text-lighten-4"><h1>{% trans 'Log into your Account' %}</h1></span>
                 <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
 
