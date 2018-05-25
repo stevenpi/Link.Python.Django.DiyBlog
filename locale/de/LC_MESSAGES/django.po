@@ -357,3 +357,18 @@ msgstr "Einloggen"
 
 msgid "Revoke Vote"
 msgstr "Bewertung zurückziehen"
+
+msgid "Not Found"
+msgstr "Nicht gefunden"
+
+msgid "We're sorry, but it appears you tried to access a page which doesn't exist."
+msgstr "Ojemine! Es scheint so, als würde diese Seite nicht existieren."
+
+msgid "Return to homepage"
+msgstr "Zur Startseite zurück"
+
+msgid "Server Error"
+msgstr "Server Fehler"
+
+msgid "We're sorry, but it appears the request could not be handled by our server. Maybe try later again?"
+msgstr "Ojemine! Der Server schien diese Anfrage nicht richtig bearbeiten zu können. Vielleicht später noch einmal versuchen?"

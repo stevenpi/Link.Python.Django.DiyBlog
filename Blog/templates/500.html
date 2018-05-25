@@ -1,0 +1,8 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>500 - {% trans 'Server Error' %}</h1>
+    <p>{% trans "We're sorry, but it appears the request could not be handled by our server. Maybe try later again?" %}</p>
+    <a href="{% url 'index' %}" class="btn waves-effect waves-light">{% trans 'Return to homepage' %}</a>
+{% endblock %}
