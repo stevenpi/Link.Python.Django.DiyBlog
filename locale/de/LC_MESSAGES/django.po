@@ -354,3 +354,6 @@ msgstr "Spracheinstellungen"
 
 msgid "Log into your Account"
 msgstr "Einloggen"
+
+msgid "Revoke Vote"
+msgstr "Bewertung zurückziehen"

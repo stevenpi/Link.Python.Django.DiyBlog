@@ -151,15 +151,17 @@ def vote_content_model(request):
     else:
         entity = Comment.objects.get(pk=content_model_id)
 
-    voted = False
     if entity.votes.exists(request.user.id):
         voted = True
 
-    vote_direction = request.GET.get("like", "")
-    if vote_direction == "True" and voted is False:
+    # vote command values: 'True' equals Like, 'False' equals Dislike, 'Revoke' equals remove
+    vote_command = request.GET.get("like", "")
+    if vote_command == "True":
         entity.votes.up(request.user.id)
-    elif vote_direction == "False" and voted is False:
+    elif vote_command == "False":
         entity.votes.down(request.user.id)
+    elif vote_command == "Revoke":
+        entity.votes.delete(request.user.id)
 
     if content_type == content_types["post"]:
         return HttpResponseRedirect(reverse('post-detail', kwargs={"slug": entity.slug}))
