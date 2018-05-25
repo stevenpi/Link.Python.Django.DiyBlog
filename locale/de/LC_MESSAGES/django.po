@@ -372,3 +372,12 @@ msgstr "Server Fehler"
 
 msgid "We're sorry, but it appears the request could not be handled by our server. Maybe try later again?"
 msgstr "Ojemine! Der Server schien diese Anfrage nicht richtig bearbeiten zu können. Vielleicht später noch einmal versuchen?"
+
+msgid "Successfully liked!"
+msgstr "Erfolgreich geliked!"
+
+msgid "Successfully disliked!"
+msgstr "Erfolreich Disliked!"
+
+msgid "Successfully revoked!"
+msgstr "Bewertung zurückgezogen"
