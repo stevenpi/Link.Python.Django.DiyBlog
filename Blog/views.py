@@ -253,6 +253,22 @@ def _get_corresponding_entity(content_type, content_id):
     return entity
 
 
+class PostUpdate(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'Blog/post_update.html'
+    model = Post
+    fields = ['title', 'content']
+
+    def get_object(self, *args, **kwargs):
+        obj = super(PostUpdate, self).get_object(*args, **kwargs)
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Successfully updated Post!"))
+        return super().form_valid(form)
+
+
 # Inserts a lot of users, posts and comments to the db
 def insert_to_db(request):
     if not request.user.is_superuser:

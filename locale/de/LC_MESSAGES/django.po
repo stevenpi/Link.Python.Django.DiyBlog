@@ -384,3 +384,9 @@ msgstr "Bewertung zurückgezogen"
 
 msgid "Write your post using Markdown!"
 msgstr "Schreibe den Post! Markdown wird unterstützt."
+
+msgid "Successfully updated Post!"
+msgstr "Post erfolgreich aktualisiert!"
+
+msgid "Edit Post"
+msgstr "Post Editieren"
