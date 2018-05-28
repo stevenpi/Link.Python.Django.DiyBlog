@@ -5,7 +5,7 @@ from django.db.models import Model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-
+from markdownx.models import MarkdownxField
 
 from vote.models import VoteModel
 from taggit.managers import TaggableManager
@@ -13,7 +13,7 @@ from taggit.managers import TaggableManager
 
 class ContentModelMixin(VoteModel, models.Model):
     id = models.AutoField(primary_key=True)
-    content = models.CharField(max_length=2048)
+    content = MarkdownxField()
     created = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

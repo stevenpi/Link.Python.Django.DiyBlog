@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load utils %}
 
 {% block content %}
     <h1>{% trans 'Posts' %}</h1>
@@ -25,7 +26,7 @@
                     <div class="card grey darken-2 hoverable">
                         <div class="card-content white-text">
                             <span class="card-title">{{ post.title }}</span>
-                            <p>{{ post.content|truncatechars:240 }}</p>
+                            <p>{{ post.content|truncatechars:240|show_markdown|safe }}</p>
                         </div>
                         <div class="card-action">
                             <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>

@@ -381,3 +381,6 @@ msgstr "Erfolreich Disliked!"
 
 msgid "Successfully revoked!"
 msgstr "Bewertung zurückgezogen"
+
+msgid "Write your post using Markdown!"
+msgstr "Schreibe den Post! Markdown wird unterstützt."

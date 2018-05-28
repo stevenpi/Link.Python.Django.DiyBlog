@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import TextInput, Textarea, FileInput
 from django.utils.translation import ugettext_lazy as _
+from markdownx.fields import MarkdownxFormField
 
 from Blog.models import Post, Profile
 
@@ -13,12 +14,13 @@ class PostCreateForm(forms.ModelForm):
         fields = ['title', 'content']
         widgets = {
             'title': TextInput(),
-            'content': Textarea(attrs={'rows': 15}),
+            'content': MarkdownxFormField(),
         }
 
         labels = {
             'title': _('Title'),
-            'content': _('Content')
+            # intentionally set empty, since the framework messes the label up with the markdown editor
+            'content': ''
         }
 
 

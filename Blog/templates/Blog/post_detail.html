@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <p class="flow-text">{{ post.content }}</p>
+            <p class="flow-text">{{ post.content|show_markdown|safe }}</p>
             <div class="card-action">
                 <div class="shariff" data-button-style="icon"></div>
             </div>
