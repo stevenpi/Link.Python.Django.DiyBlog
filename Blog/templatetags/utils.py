@@ -1,4 +1,5 @@
 from django.template import Library
+from markdownx.utils import markdownify
 from vote.models import UP, DOWN
 
 register = Library()
@@ -22,3 +23,7 @@ def user_voted_up(model_entity, user):
 @register.filter
 def user_voted_down(model_entity, user):
     return model_entity.votes.exists(user.id, action=DOWN)
+
+@register.filter
+def show_markdown(text):
+    return markdownify(text)

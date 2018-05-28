@@ -4,9 +4,11 @@ defusedxml==0.5.0
 Django==2.0.3
 django-fullurl==0.5
 django-haystack==2.8.1
+django-markdownx==2.0.23
 django-taggit==0.22.2
 django-vote==2.1.6
 idna==2.6
+Markdown==2.6.11
 oauthlib==2.0.7
 Pillow==5.1.0
 PyJWT==1.6.1

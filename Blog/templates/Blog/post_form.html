@@ -2,6 +2,9 @@
 {% load i18n %}
 
 {% block title %}
+    <!-- suppress incorrect warnings in the  pycharm editor -->
+    <!--suppress ALL -->
+
     <title>{% trans 'Add Post' %}</title>
 {% endblock %}
 
@@ -17,6 +20,7 @@
                         {{ field }}
                     </div>
                 {% endfor %}
+                <textarea id="markdown_editor"></textarea>
                 <button class="btn waves-effect waves-light" type="submit" name="action"
                         value="login">{% trans 'Submit' %}
                     <i class="material-icons right">send</i>
@@ -24,4 +28,23 @@
             </form>
         </div>
     </div>
+    <!-- Configure simpleMDE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        const markdown_editor = new SimpleMDE({
+            element: document.getElementById("markdown_editor"),
+            placeholder: "{% trans 'Write your post using Markdown!' %}"
+        });
+
+        markdown_editor.codemirror.on('change', () => {
+            markdownx_textarea = document.getElementById("id_content").value = markdown_editor.value();
+        });
+
+        document.getElementById('id_content').style.display = "none"
+        icons = document.getElementsByClassName("fa");
+        Array.prototype.forEach.call(icons, function(icon) {
+            icon.setAttribute('style', 'color:white !important');
+        });
+    </script>
 {% endblock %}

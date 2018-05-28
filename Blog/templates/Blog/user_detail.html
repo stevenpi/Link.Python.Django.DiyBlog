@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% load static %}
+{% load utils %}
 
 {% block content %}
     <div class="card grey darken-2 z-depth-4 white-text">
@@ -54,7 +55,7 @@
                         <div class="card small grey darken-1 hoverable">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ post.title }}</span>
-                                <p>{{ post.content|truncatechars:240 }}</p>
+                                <p>{{ post.content|truncatechars:240|show_markdown|safe }}</p>
                             </div>
                             <div class="card-action">
                                 <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>
@@ -74,7 +75,7 @@
                         <div class="card small grey darken-1 hoverable">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ post.title }}</span>
-                                <p>{{ comment.content|truncatechars:240 }}</p>
+                                <p>{{ comment.content|truncatechars:240|show_markdown|safe }}</p>
                             </div>
                             <div class="card-action">
                                 <a href="{{ comment.post.get_absolute_url }}">{% trans 'Read More' %}</a>
@@ -94,7 +95,7 @@
                         <div class="card grey small darken-1 hoverable">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ post.title }}</span>
-                                <p>{{ post.content|truncatechars:240 }}</p>
+                                <p>{{ post.content|truncatechars:240|show_markdown|safe }}</p>
                             </div>
                             <div class="card-action">
                                 <a href="{{ post.get_absolute_url }}">{% trans 'Read More' %}</a>

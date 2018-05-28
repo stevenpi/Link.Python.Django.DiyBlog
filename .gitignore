@@ -103,3 +103,4 @@ ENV/
 
 media/
 /DiyBlog/whoosh_index/
+/static_root/

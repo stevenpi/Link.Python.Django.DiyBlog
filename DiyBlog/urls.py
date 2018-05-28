@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     url(r'^auth/', include('social_django.urls', namespace='social')),
+    url(r'^markdownx/', include('markdownx.urls')),
 ]
 
 urlpatterns += i18n_patterns(
