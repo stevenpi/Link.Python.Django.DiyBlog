@@ -8,14 +8,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.text import slugify
 from django.utils.translation import ugettext as _
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
-from vote.managers import UP
+from vote.managers import UP, DOWN
 
 from .models import Post, Comment, Profile
 from Blog.blogForms import PostCreateForm, UpdateUserForm, UpdateProfileForm
@@ -205,6 +205,52 @@ class PostCreate(LoginRequiredMixin, generic.CreateView):
         form.instance.created = datetime.datetime.now()
         form.instance = _create_post_slug(form.instance)
         return super().form_valid(form)
+
+
+def vote_ajax(request):
+    action = request.GET.get('action', None)
+    content_type = request.GET.get('content-type', None)
+    content_id = request.GET.get('content-id', None)
+
+    entity = _get_corresponding_entity(content_type, content_id)
+
+    message = ""
+    if action == "like":
+        entity.votes.up(request.user.id)
+        message = _("Successfully liked!")
+    elif action == "dislike":
+        entity.votes.down(request.user.id)
+        message = _("Successfully disliked!")
+    elif action == "revoke":
+        entity.votes.delete(request.user.id)
+        message = _("Successfully revoked!")
+    entity.refresh_from_db()
+
+    score = entity.vote_score
+    has_upvoted = entity.votes.exists(request.user.id, action=UP)
+    has_downvoted = entity.votes.exists(request.user.id, action=DOWN)
+    has_voted = has_upvoted or has_downvoted
+
+    data = {
+        'success': True,
+        'score': score,
+        'voted': has_voted,
+        'upvoted': has_upvoted,
+        'downvoted': has_downvoted,
+        'message': message
+    }
+
+    return JsonResponse(data)
+
+
+def _get_corresponding_entity(content_type, content_id):
+    content_types = {"post": "post", "comment": "comment"}
+    if content_type == content_types["post"]:
+        entity = Post.objects.get(pk=content_id)
+    else:
+        entity = Comment.objects.get(pk=content_id)
+
+    return entity
 
 
 # Inserts a lot of users, posts and comments to the db

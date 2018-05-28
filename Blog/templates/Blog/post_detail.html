@@ -9,37 +9,23 @@
             <h1>{{ post }}</h1>
             <p>{% trans 'Posted by:' %} <a
                     href="{{ post.user.get_absolute_url }}">{{ post.user }}</a> {% trans 'on' %} {{ post.created }}</p>
-            <div class="row">
-                {% if request.user.is_authenticated %}
-                    {% if post|user_voted_down:user %}
-                        <a href="" class="btn disabled"><i
-                                class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
-                    {% else %}
-                        <a href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=False"
-                           class="waves-effect waves-light btn"><i
-                                class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
-                    {% endif %}
+            <div class="preload-button-wrapper">
+                <div id="post-vote-wrapper" class="row vote-buttons">
+                    <button id="post-dislike"
+                            class="waves-effect waves-light btn dislike {% if post|user_voted_down:user %} disabled {% endif %}"
+                            onclick="voteContent($('#post-dislike'), 'post', {{ post.id }}, 'dislike', $('#post-like'), $('#post-revoke'), $('#post-score'))">
+                        <i class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</button>
+                    <button id="post-like"
+                            class="waves-effect waves-light btn post-like {% if post|user_voted_up:user %} disabled {% endif %}"
+                            onclick="voteContent($('#post-like'), 'post', {{ post.id }}, 'like', $('#post-dislike'), $('#post-revoke'), $('#post-score'))">
+                        <i class="material-icons left">thumb_up</i>{% trans 'Like' %}</button>
+                    <button id="post-revoke"
+                            class="waves-effect waves-light btn revoke {% if not post|user_has_voted:user %} disabled {% endif %}"
+                            onclick="voteContent($('#post-revoke'), 'post', {{ post.id }}, 'revoke', $('#post-like'), $('#post-dislike'), $('#post-score'))">
+                        <i class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</button>
 
-                    {% if post|user_voted_up:user %}
-                        <a href="" class="btn disabled"><i
-                                class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
-                    {% else %}
-                        <a href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=True"
-                           class="waves-effect waves-light btn"><i
-                                class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
-                    {% endif %}
-
-                    {% if post|user_has_voted:user %}
-                        <a href="{% url 'vote' %}?model_id={{ post.id }}&model_type=post&like=Revoke"
-                           class="waves-effect waves-light btn"><i
-                                class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</a>
-                    {% else %}
-                        <a href="" class="disabled btn"><i
-                                class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</a>
-                    {% endif %}
-
-                {% endif %}
-                <h4>{% trans 'Score' %}: {{ post.vote_score }}</h4>
+                    <h4 id="post-score">{% trans 'Score' %}: {{ post.vote_score }}</h4>
+                </div>
             </div>
 
             <p class="flow-text">{{ post.content }}</p>
@@ -63,41 +49,52 @@
                         {% endif %}
                         <span class="title">{{ comment.user }}</span>
                         <p>{{ comment.content }}</p>
-                        {% if request.user.is_authenticated %}
-                            {% if comment|user_voted_down:user %}
-                                <a href="" class="disabled btn"><i
-                                        class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
-                            {% else %}
-                                <a href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=False"
-                                   class="waves-effect waves-light btn"><i
-                                        class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</a>
-                            {% endif %}
 
-                            {% if comment|user_voted_up:user %}
-                                <a href="" class="disabled btn"><i
-                                        class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
-                            {% else %}
-                                <a href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=True"
-                                   class="waves-effect waves-light btn"><i
-                                        class="material-icons left">thumb_up</i>{% trans 'Like' %}</a>
-                            {% endif %}
+                        <button id="comment-dislike-{{ comment.id }}"
+                                class="waves-effect waves-light btn {% if comment|user_voted_down:user %} disabled {% endif %}"
+                                onclick="voteContent($('#comment-dislike-{{ comment.id }}'), 'comment', {{ comment.id }}, 'dislike', $('#comment-like-{{ comment.id }}'), $('#comment-revoke-{{ comment.id }}'), $('#comment-score-{{ comment.id }}'))">
+                            <i class="material-icons left">thumb_down</i>{% trans 'Dislike' %}</button>
+                        <button id="comment-like-{{ comment.id }}"
+                                class="waves-effect waves-light btn {% if comment|user_voted_up:user %} disabled {% endif %}"
+                                onclick="voteContent($('#comment-like-{{ comment.id }}'), 'comment', {{ comment.id }}, 'like', $('#comment-dislike-{{ comment.id }}'), $('#comment-revoke-{{ comment.id }}'), $('#comment-score-{{ comment.id }}'))">
+                            <i class="material-icons left">thumb_up</i>{% trans 'Like' %}</button>
+                        <button id="comment-revoke-{{ comment.id }}"
+                                class="waves-effect waves-light btn {% if not comment|user_has_voted:user %} disabled {% endif %}"
+                                onclick="voteContent($('#comment-revoke-{{ comment.id }}'), 'comment', {{ comment.id }}, 'revoke', $('#comment-like-{{ comment.id }}'), $('#comment-dislike-{{ comment.id }}'), $('#comment-score-{{ comment.id }}'))">
+                            <i class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</button>
 
-                            {% if comment|user_has_voted:user %}
-                                <a href="{% url 'vote' %}?model_id={{ comment.id }}&model_type=comment&like=Revoke"
-                                   class="waves-effect waves-light btn"><i
-                                        class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</a>
-                            {% else %}
-                                <a href="" class="disabled btn"><i
-                                        class="material-icons left">clear</i>{% trans 'Revoke Vote' %}</a>
-                            {% endif %}
-                        {% endif %}
-                        <h6>{% trans 'Score' %}: {{ comment.vote_score }}</h6>
+                        <h6 id="comment-score-{{ comment.id }}">{% trans 'Score' %}: {{ comment.vote_score }}</h6>
                     </li>
                 {% endfor %}
             </ul>
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'comment-add' pk=post.id %}" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">add</i></a>
-        {% endif %}
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'comment-add' pk=post.id %}"
+                   class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">add</i></a>
+            {% endif %}
         </div>
     </div>
+    <script type="application/javascript">
+        function voteContent(senderButton, content_type, content_id, action, otherButtonOne, otherButtonTwo, score) {
+
+            $.ajax({
+                url: '{% url "ajax-vote" %}',
+                data: {
+                    'action': action,
+                    'content-type': content_type,
+                    'content-id': content_id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        score.text("{% trans 'Score' %}" + ": " + data.score);
+                        M.toast({html: data.message});
+                    }
+                }
+            });
+
+            senderButton.addClass('disabled');
+            otherButtonOne.removeClass('disabled');
+            otherButtonTwo.removeClass('disabled');
+        }
+    </script>
 {% endblock %}
