@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'taggit',
     'haystack',
     'markdownx',
+    'rest_framework',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
