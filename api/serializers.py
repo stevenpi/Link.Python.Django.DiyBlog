@@ -57,3 +57,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'date_joined', 'last_login', 'groups')
+
+
+class CommentSerializer(DiyContentModelSerializer):
+    class Meta:
+        model = models.Comment
+        fields = ('content', 'created', 'user', 'post')
