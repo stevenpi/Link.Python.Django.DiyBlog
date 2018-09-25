@@ -50,7 +50,7 @@ class PostSerializer(TaggitSerializer, DiyContentModelSerializer):
 
     class Meta:
         model = models.Post
-        fields = ('title', 'content', 'created', 'vote_score', 'tags')
+        fields = ('title', 'content', 'created', 'vote_score', 'tags', 'user')
 
 
 class UserSerializer(serializers.ModelSerializer):
