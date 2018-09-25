@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+from django.contrib.auth.models import User
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework import serializers
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
@@ -50,3 +51,9 @@ class PostSerializer(TaggitSerializer, DiyContentModelSerializer):
     class Meta:
         model = models.Post
         fields = ('title', 'content', 'created', 'vote_score', 'tags')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'date_joined', 'last_login', 'groups')

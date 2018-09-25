@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
 
 from api import serializers, utils
@@ -9,6 +10,11 @@ from Blog import models
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = models.Profile.objects.all()
     serializer_class = serializers.ProfileSerializer
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
