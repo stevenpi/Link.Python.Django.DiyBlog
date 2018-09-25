@@ -2,6 +2,7 @@ from collections import OrderedDict
 
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework import serializers
+from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 
 from Blog import models
 
@@ -31,7 +32,21 @@ class DiyBlogModelSerializer(serializers.ModelSerializer):
         return fields
 
 
+class DiyContentModelSerializer(DiyBlogModelSerializer):
+    content = serializers.ModelField(model_field=models.ContentModelMixin()._meta.get_field('content'))
+    created = serializers.DateField()
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+
+
 class ProfileSerializer(DiyBlogModelSerializer):
     class Meta:
         model = models.Profile
         fields = '__all__'
+
+
+class PostSerializer(TaggitSerializer, DiyContentModelSerializer):
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = models.Post
+        fields = ('title', 'content', 'created', 'vote_score', 'tags')

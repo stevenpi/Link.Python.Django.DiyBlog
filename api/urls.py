@@ -7,6 +7,7 @@ from api import views
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r'profiles', views.ProfileViewSet)
+router.register(r'posts', views.PostViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls))

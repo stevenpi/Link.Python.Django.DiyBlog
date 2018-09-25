@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'markdownx',
     'rest_framework',
     'api.apps.ApiConfig',
+    'taggit_serializer'
 ]
 
 MIDDLEWARE = [

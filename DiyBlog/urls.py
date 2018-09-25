@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^markdownx/', include('markdownx.urls')),
     path('api/', include('api.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns += i18n_patterns(
