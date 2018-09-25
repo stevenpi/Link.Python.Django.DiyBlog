@@ -10,13 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.utils.text import slugify
 from django.utils.translation import ugettext as _
 from django.views import generic
 from django.urls import reverse
 from taggit.models import Tag
 from vote.managers import UP, DOWN
 
+from api import utils
 from .models import Post, Comment, Profile
 from Blog.blogForms import PostCreateForm, UpdateUserForm, UpdateProfileForm
 
@@ -187,11 +187,7 @@ def post_detail_view(request, slug):
 
 
 def _create_post_slug(post_instance):
-    slug = slugify(post_instance.title)
-    same_slugs_count = Post.objects.filter(slug__icontains=slug).count()
-    if 0 < same_slugs_count:
-        # whitespace to let slugify create a hyphen
-        slug += "-" + str(same_slugs_count)
+    slug = utils.get_slug(post_instance.title, Post)
     post_instance.slug = slug
     return post_instance
 
