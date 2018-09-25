@@ -174,3 +174,11 @@ HAYSTACK_CONNECTIONS = {
 
 # django-messages configuration
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# Rest Framework options
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        'api.permissions.IsOwnerOrReadOnly',
+    )
+}
