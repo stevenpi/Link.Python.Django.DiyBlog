@@ -10,7 +10,7 @@ django-vote==2.1.6
 idna==2.6
 Markdown==2.6.11
 oauthlib==2.0.7
-Pillow==5.1.0
+Pillow==9.0.1
 PyJWT==1.6.1
 python3-openid==3.1.0
 pytz==2018.3
